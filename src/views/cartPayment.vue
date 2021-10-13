@@ -32,6 +32,9 @@ export default {
         card.mount('#card-elements');
         axios.post("https://127.0.0.1:8000/payment/1")
             .then(res=>{
+                if(res.status == "404"){
+                    this.$router.push(-1)
+                }
                 // console.log(res.data.user.email)
                 this.intentSecret = res.data.intentSecret
                 this.cartId = res.data.cart['id']  
