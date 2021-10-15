@@ -3,7 +3,14 @@
     
     <h4 v-if="cartItems.length == 0">Votre panier est vide</h4>
     <ul v-for="(item,key) in cartItems" :key="key" class="list-group list-group-flush">
-  <li class="list-group-item">{{item['book']['title']}}  <span class="badge bg-primary rounded-pill">{{item.quantity}}</span></li>
+  <li class="list-group-item">
+    {{item['book']['title']}}  
+    <span class="badge bg-primary rounded-pill me-2">
+      {{item.quantity}}
+      </span>
+  <button type="button" @click="minusCartItem(item.id)" class="btn btn-danger btn-sm me-2">-</button>
+  <button type="button" @click="plusCartItem(item.id)" class="btn btn-success btn-sm">+</button>
+  </li>
 </ul>
 <br>
 <h4 v-if="cartItems.length !== 0">Total de votre panier {{total}}€</h4>
@@ -26,7 +33,7 @@ export default {
     }
   },
   mounted(){
-    axios.get("https://127.0.0.1:8000"+this.cart)
+    axios.get("https://127.0.0.1:8000/api/carts/"+this.cart)
         .then(data => {
           console.log(data.data);
           this.cartItems = data.data.cartItems
@@ -40,7 +47,34 @@ export default {
       axios.delete("https://127.0.0.1:8000/api/cart_items/"+item.id)
           .then(res=>{console.log(res,'OK')})
     })
+    let resetTotal = {
+      'total':0
+    }
+    const config = {
+            headers: {
+              "content-type": "application/merge-patch+json",
+            },
+          };
+    axios.patch("https://127.0.0.1:8000/api/carts/"+this.cart,resetTotal,config)
     },
+    minusCartItem(id){
+      let cartItemId = {
+        'cartItemId': id
+      };
+      axios.post('https://127.0.0.1:8000/cartItems/minus',cartItemId)
+          .then(
+            this.$router.go()
+          )
+    },
+    plusCartItem(id){
+      let cartItemId = {
+        'cartItemId': id
+      };
+      axios.post('https://127.0.0.1:8000/cartItems/plus',cartItemId)
+          .then(
+            this.$router.go()
+          )
+    }
   },
   computed: {
     ...mapGetters({

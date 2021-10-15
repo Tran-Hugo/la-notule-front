@@ -78,7 +78,8 @@ export default {
     ]),
     ...mapGetters({
         cart:'getCart',
-        })
+        }),
+    
   }
 
 }
