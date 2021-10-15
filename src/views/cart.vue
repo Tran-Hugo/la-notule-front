@@ -9,7 +9,8 @@
       {{item.quantity}}
       </span>
   <button type="button" @click="minusCartItem(item.id)" class="btn btn-danger btn-sm me-2">-</button>
-  <button type="button" @click="plusCartItem(item.id)" class="btn btn-success btn-sm">+</button>
+  <button type="button" @click="plusCartItem(item.id)" class="btn btn-success btn-sm me-2">+</button>
+  <button type="button" @click="deleteCartItem(item.id)" class="btn btn-danger btn-sm me-2">Supprimer</button>
   </li>
 </ul>
 <br>
@@ -74,6 +75,11 @@ export default {
           .then(
             this.$router.go()
           )
+    },
+    deleteCartItem(id){
+      axios.delete('https://127.0.0.1:8000/cartItems/delete/'+id)
+          .then(res=>{console.log(res)
+          this.$router.go()})
     }
   },
   computed: {

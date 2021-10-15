@@ -22,6 +22,8 @@
   <button @click="test">TEST</button>
   <button @click="logout">logout</button>
   <br>
+  <router-link to="/register">Pas de compte ?</router-link>
+  <br>
 
   <!-- </div> -->
 

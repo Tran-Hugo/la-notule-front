@@ -69,19 +69,12 @@ export default {
             ).then((result)=>{
                 if('paymentIntent' in result){
                     // console.log(result.paymentIntent,result)
-                    this.stripeTokenHandler(result.paymentIntent)
+                    // this.stripeTokenHandler(result.paymentIntent)
                     // console.log(result.paymentIntent,result)
-                } else if ('error' in result) {
-                    console.log(result.error.code)
-                    this.message = 'Carte refusée'
-                }
-            })
-        },
-        stripeTokenHandler(intent){
-            let data = {
-                'stripeIntentId':intent.id,
-                'stripeIntentPaymentMethod':intent.payment_method,
-                'stripeIntentStatus':intent.status,
+                    let data = {
+                'stripeIntentId':result.paymentIntent.id,
+                'stripeIntentPaymentMethod':result.paymentIntent.payment_method,
+                'stripeIntentStatus':result.paymentIntent.status,
                 'subscription':this.cartId
             }
             console.log(data)
@@ -89,7 +82,25 @@ export default {
                 .then(
                     setTimeout(window.location.href="http://localhost:8080/",4000)
                    )
-        }
+                } else if ('error' in result) {
+                    console.log(result.error.code)
+                    this.message = 'Carte refusée'
+                }
+            })
+        },
+        // stripeTokenHandler(intent){
+        //     let data = {
+        //         'stripeIntentId':intent.id,
+        //         'stripeIntentPaymentMethod':intent.payment_method,
+        //         'stripeIntentStatus':intent.status,
+        //         'subscription':this.cartId
+        //     }
+        //     console.log(data)
+        //     axios.post('https://127.0.0.1:8000/payment/'+this.cartId+'/subscription',data)
+        //         .then(
+        //             setTimeout(window.location.href="http://localhost:8080/",4000)
+        //            )
+        // }
     },
     computed: {
     ...mapGetters({

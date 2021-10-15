@@ -12,8 +12,6 @@ export default createStore({
   modules: {
     loginModule: {
       state:{
-        posts: [],
-        me:"",
         token: localStorage.getItem('token'),
         role:[],
         cart:"",
@@ -25,11 +23,17 @@ export default createStore({
         SET_ROLE(state,role){
           state.role = role
         },
-        RESET_ROLE(state,role){
-          state.role = role
-        },
         SET_CART(state,cart){
           state.cart = cart
+        },
+        RESET_TOKEN(state){
+          state.token = null
+        },
+        RESET_CART(state){
+          state.cart = ""
+        },
+        RESET_ROLE(state){
+          state.role = []
         }
       },
       actions:{
@@ -45,7 +49,7 @@ export default createStore({
                           let role = res.data.data['roles'][0];
                           let cart = res.data.data['cart']  
                           localStorage.setItem( 'token',res.data.token );
-                          this.state.token = localStorage.getItem('token');
+                          this.state.loginModule.token = localStorage.getItem('token');
                           commit('SET_CART',cart)
                           commit('SET_ROLE',role);
                           })
@@ -66,9 +70,9 @@ export default createStore({
         },
         logout({commit}){
           localStorage.removeItem('token')
-          this.state.token = null
-          let role = []
-          commit('RESET_ROLE',role)
+          commit('RESET_TOKEN')
+          commit('RESET_CART')
+          commit('RESET_ROLE')
         },
       }
     } //fin login module
