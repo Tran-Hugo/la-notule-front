@@ -74,7 +74,7 @@ const routes = [
     },
     children:[
       {
-        path:'/books',
+        path:'/admin/books',
         name:'booksAdmin',
         component:bookAdmin
       },

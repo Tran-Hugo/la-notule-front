@@ -18,6 +18,7 @@ export default createStore({
       },
       getters:{
         getCart: state=>state.cart,
+        getToken: state=>state.token,
       },
       mutations:{
         SET_ROLE(state,role){
