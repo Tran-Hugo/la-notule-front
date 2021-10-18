@@ -58,23 +58,23 @@ export default {
           };
     axios.patch("https://127.0.0.1:8000/api/carts/"+this.cart,resetTotal,config)
     },
-    minusCartItem(id){
+   async minusCartItem(id){
       let cartItemId = {
         'cartItemId': id
       };
-      axios.post('https://127.0.0.1:8000/cartItems/minus',cartItemId)
-          .then(
+      await axios.post('https://127.0.0.1:8000/cartItems/minus',cartItemId);
+          
             this.$router.go()
-          )
+          
     },
-    plusCartItem(id){
+   async plusCartItem(id){
       let cartItemId = {
         'cartItemId': id
       };
-      axios.post('https://127.0.0.1:8000/cartItems/plus',cartItemId)
-          .then(
+     await axios.post('https://127.0.0.1:8000/cartItems/plus',cartItemId);
+          
             this.$router.go()
-          )
+          
     },
     deleteCartItem(id){
       axios.delete('https://127.0.0.1:8000/cartItems/delete/'+id)

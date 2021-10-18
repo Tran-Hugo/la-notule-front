@@ -5,6 +5,8 @@
         <div class="form-row col-6">
             <div id="card-elements" v-on:change="cardChange(event)"></div>
             <div id="card-errors" role="alert"></div>
+        <br>
+        <button type="button" @click.prevent="submit" class="btn btn-primary">Payer {{cartTotal}}€</button>
         </div>
       </form>
   </body>
@@ -25,18 +27,28 @@ export default {
             cartId:'',
             cardholderName:'',
             cardholderEmail:'',
-            message:''
+            message:'',
+            cartTotal:''
         }
     },
     mounted(){
         card = elements.create('card');
         card.mount('#card-elements');
+        card.addEventListener("change", (event)=>{
+             console.log(event)
+            let displayError = document.getElementById('card-errors');
+            if(event.error){
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = "";
+            }
+        })
         axios.post("https://127.0.0.1:8000/payment/"+this.cart)
             .then(res=>{
                 if(res.status == "404"){
                     this.$router.push(-1)
                 }
-                // console.log(res.data.user.email)
+                console.log(res.data)
                 this.intentSecret = res.data.intentSecret
                 this.cartId = res.data.cart['id']  
                 this.cardholderName = res.data.user.lastname
@@ -44,16 +56,10 @@ export default {
                 this.cartTotal = res.data.cart.total
             })
     },
+    beforeUnmount() {
+      card.destroy('#card-elements');
+    },
     methods: {
-        cardChange(event){
-            console.log(event)
-            let displayError = document.getElementById('card-errors');
-            if(event.error){
-                displayError.textContent = event.error.message;
-            } else {
-                displayError.textContent = "";
-            }
-        },
         submit(){
             stripe.handleCardPayment(
                 this.intentSecret,
@@ -70,25 +76,24 @@ export default {
                 if('paymentIntent' in result){
                     // console.log(result.paymentIntent,result)
                     // this.stripeTokenHandler(result.paymentIntent)
-                    // console.log(result.paymentIntent,result)
-                    let data = {
+                    
+                let data = {
                 'stripeIntentId':result.paymentIntent.id,
                 'stripeIntentPaymentMethod':result.paymentIntent.payment_method,
                 'stripeIntentStatus':result.paymentIntent.status,
                 'subscription':this.cartId
             }
             console.log(data)
-            axios.post('https://127.0.0.1:8000/payment/'+this.cartId+'/subscription',data)
-                .then(
-                    setTimeout(window.location.href="http://localhost:8080/",4000)
-                   )
+             axios.post('https://127.0.0.1:8000/payment/'+this.cartId+'/subscription',data)
+                    return 
                 } else if ('error' in result) {
                     console.log(result.error.code)
                     this.message = 'Carte refusée'
                 }
             })
+             .then(()=>window.location.href="http://localhost:8080/#")
         },
-        // stripeTokenHandler(intent){
+        // async stripeTokenHandler(intent){
         //     let data = {
         //         'stripeIntentId':intent.id,
         //         'stripeIntentPaymentMethod':intent.payment_method,
@@ -96,10 +101,9 @@ export default {
         //         'subscription':this.cartId
         //     }
         //     console.log(data)
-        //     axios.post('https://127.0.0.1:8000/payment/'+this.cartId+'/subscription',data)
-        //         .then(
-        //             setTimeout(window.location.href="http://localhost:8080/",4000)
-        //            )
+        //     await axios.post('https://127.0.0.1:8000/payment/'+this.cartId+'/subscription',data)
+        //     // card.clear();
+        //             .then(setTimeout(window.location.href="http://localhost:8080/",4000))
         // }
     },
     computed: {
