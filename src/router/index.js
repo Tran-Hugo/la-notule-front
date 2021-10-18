@@ -79,7 +79,7 @@ const routes = [
         component:bookAdmin
       },
       {
-        path:'/addBook',
+        path:'/admin/addBook',
         name:'addBook',
         component:addBook
       },
