@@ -35,6 +35,7 @@
 
 <script>
 import axios from 'axios'
+import configHelper from '../helpers/configHeader'
 
 export default {
     name:'register',
@@ -64,7 +65,13 @@ export default {
                 }
             }
             if(this.password === this.confirmPassword){
-                axios.post('https://127.0.0.1:8000/api/users',user)
+                axios.post(configHelper.domain+'/api/users',user)
+                    .then(res=>{
+                        if(res.status == 201)
+                        {
+                            this.$router.push('/login');
+                        }
+                    })
             }
         },
         testEmail(){

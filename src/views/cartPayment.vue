@@ -15,6 +15,7 @@
 <script>
 import axios from 'axios'
 import {mapGetters} from 'vuex'
+import configHelper from '../helpers/configHeader'
 
 let stripe = window.Stripe('pk_test_51JinhbIWZlqy6WjcZXGkpfEZhzIxhrVBvtHJpQTC8dUZ2fBM51VHUJ83Ow6je0sM4tV1RJlRk5tTlkquPN3J3lP800Y24MdTrk'),
     elements = stripe.elements(),
@@ -43,7 +44,7 @@ export default {
                 displayError.textContent = "";
             }
         })
-        axios.post("https://127.0.0.1:8000/payment/"+this.cart)
+        axios.post(configHelper.domain+"/payment/"+this.cart)
             .then(res=>{
                 if(res.status == "404"){
                     this.$router.push(-1)
@@ -84,7 +85,7 @@ export default {
                 'subscription':this.cartId
             }
             console.log(data)
-             axios.post('https://127.0.0.1:8000/payment/'+this.cartId+'/subscription',data)
+             axios.post(configHelper.domain+'/payment/'+this.cartId+'/subscription',data)
                     return 
                 } else if ('error' in result) {
                     console.log(result.error.code)

@@ -15,6 +15,7 @@ export default createStore({
         token: localStorage.getItem('token'),
         role:[],
         cart:"",
+        refreshToken:''
       },
       getters:{
         getCart: state=>state.cart,
@@ -35,6 +36,15 @@ export default createStore({
         },
         RESET_ROLE(state){
           state.role = []
+        },
+        SET_REFRESH_TOKEN(state,token){
+          state.refreshToken = token
+        },
+        RESET_REFRESH_TOKEN(state){
+          state.refreshToken = null
+        },
+        SET_TOKEN(state,token){
+          state.token = token
         }
       },
       actions:{
@@ -48,17 +58,19 @@ export default createStore({
                         .then(res=>{
                           console.log(res.data);
                           let role = res.data.data['roles'][0];
-                          let cart = res.data.data['cart']  
+                          let cart = res.data.data['cart'] 
+                          let refreshToken = res.data.refresh_token;
                           localStorage.setItem( 'token',res.data.token );
                           this.state.loginModule.token = localStorage.getItem('token');
                           commit('SET_CART',cart)
                           commit('SET_ROLE',role);
+                          commit('SET_REFRESH_TOKEN',refreshToken);
                           })
         },
         test({commit}){
           let config = {
             headers:{
-              Authorization: 'Bearer ' + this.state.token
+              Authorization: 'Bearer ' + this.state.loginModule.token
           }
           }
           
@@ -68,12 +80,14 @@ export default createStore({
                 let role = res.data.roles[0]  
                 commit('SET_ROLE',role)
               })
+              .catch(err=>{console.log(err)})
         },
         logout({commit}){
           localStorage.removeItem('token')
           commit('RESET_TOKEN')
           commit('RESET_CART')
           commit('RESET_ROLE')
+          commit('RESET_REFRESH_TOKEN')
         },
       }
     } //fin login module

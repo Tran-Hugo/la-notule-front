@@ -24,6 +24,7 @@
 // @ is an alias to /src
 import axios from 'axios'
 import {mapGetters} from 'vuex'
+import configHelper from '../helpers/configHeader.js'
 
 export default {
   name: 'cart',
@@ -34,7 +35,7 @@ export default {
     }
   },
   mounted(){
-    axios.get("https://127.0.0.1:8000/api/carts/"+this.cart)
+    axios.get(configHelper.domain+"/api/carts/"+this.cart)
         .then(data => {
           console.log(data.data);
           this.cartItems = data.data.cartItems
@@ -45,7 +46,7 @@ export default {
     removeCart(){
       this.cartItems.forEach((item) => {
   console.log(item.id) //value
-      axios.delete("https://127.0.0.1:8000/api/cart_items/"+item.id)
+      axios.delete(configHelper.domain+"/api/cart_items/"+item.id)
           .then(res=>{console.log(res,'OK')})
     })
     let resetTotal = {
@@ -56,28 +57,32 @@ export default {
               "content-type": "application/merge-patch+json",
             },
           };
-    axios.patch("https://127.0.0.1:8000/api/carts/"+this.cart,resetTotal,config)
+    axios.patch(configHelper.domain+"/api/carts/"+this.cart,resetTotal,config)
     },
    async minusCartItem(id){
       let cartItemId = {
         'cartItemId': id
       };
-      await axios.post('https://127.0.0.1:8000/cartItems/minus',cartItemId);
+      await axios.post(configHelper.domain+'/cartItems/minus',cartItemId);
           
             this.$router.go()
           
     },
-   async plusCartItem(id){
+   plusCartItem(id){
       let cartItemId = {
         'cartItemId': id
       };
-     await axios.post('https://127.0.0.1:8000/cartItems/plus',cartItemId);
-          
+     axios.post(configHelper.domain+'/cartItems/plus',cartItemId)
+          .then(
+            res=>{
+              console.log(res)
+            }
+          )
             this.$router.go()
           
     },
     deleteCartItem(id){
-      axios.delete('https://127.0.0.1:8000/cartItems/delete/'+id)
+      axios.delete(configHelper.domain+'/cartItems/delete/'+id)
           .then(res=>{console.log(res)
           this.$router.go()})
     }

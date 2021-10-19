@@ -58,7 +58,7 @@ export default {
         }
     },
     mounted(){
-        axios.get("https://127.0.0.1:8000/api/categories")
+        axios.get(headerApiProject.domain+"/api/categories")
         .then(data => {
             console.log(data.data['hydra:member'])
             this.Categories = data.data['hydra:member']
@@ -76,7 +76,7 @@ export default {
             formData.append('category', this.key);
             formData.append('file', files[0]);
 
-            axios.post('https://127.0.0.1:8000/api/books/new', formData,headerApiProject.config)
+            axios.post(headerApiProject.domain+'/api/books/new', formData,headerApiProject.config)
                 .then(res=>{
                     console.log(res)
                 })
