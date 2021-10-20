@@ -3,7 +3,8 @@
       <h1>this is the homepage</h1>
       <div class="d-flex flex-wrap justify-content-center">
           <div v-for="(book,key) in books" :key='key' class="card m-3" style="width: 18rem;">
-            <img :src="this.domain+book.fileUrl" class="card-img-top h-50" alt="...">
+            <img v-if="book.fileUrl == null" :src="this.domain+'/images/no-image.jpg'" class="card-img-top h-50" alt="...">
+            <img v-else :src="this.domain+book.fileUrl" class="card-img-top h-50" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{book.title}}</h5>
               <p class="card-text">{{book.author}}</p>
@@ -13,7 +14,7 @@
               <br v-if="book.quantity !==0">
               <input v-if="book.quantity !==0" class="col-2 mb-2" type="number" v-model="quantity" min="0">
               <br v-if="book.quantity !==0">
-              <button @click="addCartItem(book.id)" v-if="book.quantity !==0" class="btn btn-primary">Ajouter au panier</button>
+              <button @click="addCartItem(book.id)" v-if="book.quantity !==0" class="btn btn-primary"><i class="fas fa-cart-plus"></i>Ajouter au panier</button>
               <p class="text-danger" v-else>rupture de stock</p>
             </div>
           </div>

@@ -3,7 +3,7 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/login">Login</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/cart">cart</router-link> |
+    <router-link to="/cart">cart <i class="fas fa-shopping-cart"></i></router-link> |
     <router-link to="/admin">Admin</router-link> |
   </div>
   <router-view/>
