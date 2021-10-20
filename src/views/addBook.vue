@@ -22,11 +22,26 @@
                     <input type="number" v-model="quantity" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Catégorie</label>
-                    <select class="form-select" aria-label="Default select example"  v-model="key">
-                        <option value="1">Catégories</option>
+                    <!-- <label class="form-label">Catégorie</label>
+                    <select class="form-select" multiple aria-label="multiple select example" v-model="key">
+                        
                         <option v-for="(cat,index) in Categories" :key="index" :value="cat['id']">{{cat.name}}</option>
-                    </select>    
+                    </select>   -->
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Catégories
+                    </button>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body d-flex">
+                            <div v-for="(cat,index) in Categories" :key="index">
+                                <label class="form-check-label me-3" for="flexCheckIndeterminate">
+                                {{cat.name}}
+                            </label>
+                            <input type="checkbox" class="form-check-input mb-2" v-model="key" :value="cat['id']"> 
+                            </div>
+                            
+                        </div>
+                    </div>
+                     
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Image</label>
@@ -54,7 +69,7 @@ export default {
             description:'',
             price:'',
             quantity:'',
-            key:"1" //1 parce que v-model ignore le selected et met la valeur que l'on rentre ici comme selected
+            key:[] //1 parce que v-model ignore le selected et met la valeur que l'on rentre ici comme selected
         }
     },
     mounted(){
@@ -73,7 +88,7 @@ export default {
             formData.append('description', this.description);
             formData.append('price', this.price);
             formData.append('quantity', this.quantity);
-            formData.append('category', this.key);
+            formData.append('categories', this.key);
             formData.append('file', files[0]);
 
             axios.post(headerApiProject.domain+'/api/books/new', formData,headerApiProject.config)
