@@ -3,10 +3,16 @@
       <h1>this is the homepage</h1>
       <div class="d-flex flex-wrap justify-content-center">
           <div v-for="(book,key) in books" :key='key' class="card m-3" style="width: 18rem;">
-            <img v-if="book.fileUrl == null" :src="this.domain+'/images/no-image.jpg'" class="card-img-top h-50" alt="...">
-            <img v-else :src="this.domain+book.fileUrl" class="card-img-top h-50" alt="...">
+            <router-link class="card-img-top h-50" v-if="book.fileUrl == null" :to="{ name: 'book', params: { id: book.id }}">
+              <img :src="this.domain+'/images/no-image.jpg'" class="card-img-top h-100" alt="...">
+              </router-link>
+            <router-link class="card-img-top h-50" v-else :to="{ name: 'book', params: { id: book.id }}">
+              <img :src="this.domain+book.fileUrl" class="card-img-top h-100" alt="...">
+            </router-link>
             <div class="card-body">
-              <h5 class="card-title">{{book.title}}</h5>
+              <router-link :to="{ name: 'book', params: { id: book.id }}">
+                <h5 class="card-title">{{book.title}}</h5>
+              </router-link>
               <p class="card-text">{{book.author}}</p>
               <p class="card-text">{{book.description}}</p>
               <p class="card-text">{{book.price}}€</p>

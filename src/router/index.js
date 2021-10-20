@@ -9,12 +9,19 @@ import register from '../views/Register.vue'
 import dashboard from '../views/Dashboard.vue'
 import bookAdmin from '../views/bookAdmin.vue'
 import addBook from '../views/addBook.vue'
+import book from '../views/book.vue'
+import editBook from '../views/editBook.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path:'/book/:id',
+    name:'book',
+    component:book
   },
   {
     path: '/about',
@@ -82,6 +89,11 @@ const routes = [
         path:'/admin/addBook',
         name:'addBook',
         component:addBook
+      },
+      {
+        path:'/admin/edit/book/:id',
+        name:'editBook',
+        component:editBook
       },
     ]
   },
