@@ -1,7 +1,7 @@
 <template>
 <div class="d-flex justify-content-center">
     {{key}}
-    <form class="col-6" @submit.prevent="editBook">
+    <form class="col-6" @submit.prevent="editBook(id)">
                 <div class="mb-3">
                     <label class="form-label">Titre</label>
                     <input type="text" v-model="title" class="form-control">
@@ -50,7 +50,7 @@
                     <input class="form-control" type="file" id="formFile">
                 </div>                
                 
-                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button type="submit" class="btn btn-primary">éditer</button>
         </form>
 </div>
 </template>
@@ -94,6 +94,24 @@ export default {
                     this.key.push(element.id)
                 });
             })
+    },
+    methods:{
+        editBook(id){
+            let files = document.querySelector('#formFile').files
+            let formData = new FormData();
+            formData.append('title', this.title);
+            formData.append('author', this.author);
+            formData.append('description', this.description);
+            formData.append('price', this.price);
+            formData.append('quantity', this.quantity);
+            formData.append('categories', this.key);
+            formData.append('file', files[0]);
+
+            axios.post(configHelper.domain+"/api/books/edit/"+id,formData,configHelper.config)
+                .then(res=>{
+                    console.log(res)
+                })
+        },
     },
 }
 </script>
