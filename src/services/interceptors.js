@@ -20,7 +20,7 @@ export default
                         console.log(res)
                         store.commit('SET_TOKEN',res.data.token)
                         localStorage.setItem('token',res.data.token)
-                        this.$router.go()
+                        // this.$router.go()
                     })
             }
         }

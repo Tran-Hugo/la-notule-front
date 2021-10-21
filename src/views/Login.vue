@@ -61,7 +61,7 @@ export default {
                 // console.log(this.user)
 
                 this.$store.dispatch('connexion',this.user)
-
+                
             },
     test(){
       this.$store.dispatch('test');

@@ -1,6 +1,5 @@
 <template>
 <div class="d-flex justify-content-center">
-    {{supprImg}}
     <form class="col-6" @submit.prevent="editBook(id)">
                 <div class="mb-3">
                     <label class="form-label">Titre</label>

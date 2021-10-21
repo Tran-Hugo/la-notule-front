@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import createPersistedState from "vuex-persistedstate";
 import axios from 'axios'
+import router from '../router';
 
 export default createStore({
   state: {
@@ -15,7 +16,7 @@ export default createStore({
         token: localStorage.getItem('token'),
         role:[],
         cart:"",
-        refreshToken:''
+        refreshToken:'',
       },
       getters:{
         getCart: state=>state.cart,
@@ -45,7 +46,7 @@ export default createStore({
         },
         SET_TOKEN(state,token){
           state.token = token
-        }
+        },
       },
       actions:{
         connexion({commit},user){
@@ -56,15 +57,17 @@ export default createStore({
         };
           axios.post('https://127.0.0.1:8000/api/login',user, config)
                         .then(res=>{
-                          console.log(res.data);
+                          console.log(res.data.data.id);
                           let role = res.data.data['roles'][0];
                           let cart = res.data.data['cart'] 
                           let refreshToken = res.data.refresh_token;
                           localStorage.setItem( 'token',res.data.token );
-                          this.state.loginModule.token = localStorage.getItem('token');
+                          let token = localStorage.getItem('token')
+                          commit('SET_TOKEN',token)
                           commit('SET_CART',cart)
                           commit('SET_ROLE',role);
                           commit('SET_REFRESH_TOKEN',refreshToken);
+                          router.go()
                           })
         },
         test({commit}){
@@ -90,7 +93,19 @@ export default createStore({
           commit('RESET_REFRESH_TOKEN')
         },
       }
-    } //fin login module
+    }, //fin login module
+    orderModule:{
+      state: {
+        orderUserId:''
+      },
+      mutations: {
+        SET_ORDERUSERID(state,id){
+          state = id
+        }
+      },
+      actions: {
+      },
+    }//fin orderModule
   },
   plugins: [createPersistedState()],
 })

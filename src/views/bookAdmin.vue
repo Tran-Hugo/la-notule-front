@@ -1,7 +1,8 @@
 <template>
   <h4>Books</h4>
-        <router-link :to="{ name: 'addBook'}"><button type="button" class="btn btn-primary me-2">Add Book</button></router-link>
-        <br>
+        <div class="d-flex justify-content-end col-10">
+            <router-link :to="{ name: 'addBook'}"><button type="button" class="btn btn-primary me-2">Ajouter un livre</button></router-link>
+        </div>
         <br>
         <div class="d-flex justify-content-center">
             <div class="col-10 ">
@@ -67,6 +68,11 @@ export default {
     methods:{
         remove(id){
             axios.delete(configHelper.domain+"/api/books/"+id,configHelper.config)
+                .then(res=>{
+                    if(res.status==204){
+                        this.$router.go()
+                    }
+                })
         }
     },
 }

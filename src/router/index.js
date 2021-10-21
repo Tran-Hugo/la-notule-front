@@ -11,6 +11,11 @@ import bookAdmin from '../views/bookAdmin.vue'
 import addBook from '../views/addBook.vue'
 import book from '../views/book.vue'
 import editBook from '../views/editBook.vue'
+import catAdmin from '../views/catAdmin.vue'
+import addCat from '../views/addCategory.vue'
+import editCat from '../views/editCat.vue'
+import ordersAdmin from '../views/orderAdmin.vue'
+import order from '../views/order.vue'
 
 const routes = [
   {
@@ -52,6 +57,11 @@ const routes = [
     component: Payment
   },
   {
+    path:'/order/:id',
+    name:'order',
+    component:order
+  },
+  {
     path:'/admin',
     name:'admin',
     component:dashboard,
@@ -76,7 +86,7 @@ const routes = [
             console.log(error);
           });
       } else {
-        router.push("/");
+        router.push("/login");
       }
     },
     children:[
@@ -95,6 +105,26 @@ const routes = [
         name:'editBook',
         component:editBook
       },
+      {
+        path:'/admin/categories',
+        name:'catAdmin',
+        component:catAdmin
+      },
+      {
+        path:'/admin/addCategory',
+        name:'addCategory',
+        component:addCat
+      },
+      {
+        path:'/admin/edit/category/:id',
+        name:'editCat',
+        component:editCat
+      },
+      {
+        path:'/admin/orders',
+        name:'ordersAdmin',
+        component:ordersAdmin
+      }
     ]
   },
 ]
