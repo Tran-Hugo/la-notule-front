@@ -8,6 +8,8 @@
               <br class="border-bottom">
               <p>de : {{book.author}}</p>
               <p>Description : {{book.description}}</p>
+              <p v-if="book.quantity<3" class="text-danger">en stock : {{book.quantity}}</p>
+              <p v-else>en stock : {{book.quantity}}</p>
               <p>Prix : {{book.price}}€</p>
               <label v-if="book.quantity !==0" for="">quantité</label>
               
