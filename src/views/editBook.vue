@@ -1,6 +1,6 @@
 <template>
 <div class="d-flex justify-content-center">
-    {{key}}
+    {{supprImg}}
     <form class="col-6" @submit.prevent="editBook(id)">
                 <div class="mb-3">
                     <label class="form-label">Titre</label>
@@ -45,6 +45,12 @@
                     <label for="formFile" class="form-label">Image</label>
                     <img v-if="fileUrl == null" :src="domain+'/images/no-image.jpg'" alt="..." class="col-12">
                     <img v-else :src="domain+fileUrl" alt="" class="col-12">
+                    <div>
+                        <input class="form-check-input" type="checkbox" v-model="supprImg" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Supprimer l'image
+                        </label>
+                    </div>
                     <br>
                     <br>
                     <input class="form-control" type="file" id="formFile">
@@ -70,6 +76,7 @@ export default {
             price:'',
             quantity:'',
             key:[],
+            supprImg:'false',
             domain:configHelper.domain,
             fileUrl:null,
             id:this.$route.params.id,
@@ -105,6 +112,7 @@ export default {
             formData.append('price', this.price);
             formData.append('quantity', this.quantity);
             formData.append('categories', this.key);
+            formData.append('supprImg',this.supprImg)
             formData.append('file', files[0]);
 
             axios.post(configHelper.domain+"/api/books/edit/"+id,formData,configHelper.config)
