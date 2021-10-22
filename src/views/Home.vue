@@ -1,6 +1,12 @@
 <template>
   <body class="d-flex align-items-center flex-column">
       <h1>this is the homepage</h1>
+      <div class="d-flex justify-content-end col-12">
+          <form class="d-flex" @submit.prevent="search">
+            <input class="form-control me-2" type="search" placeholder="Search" v-model="searched" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+      </div>
       <div class="d-flex flex-wrap justify-content-center">
           <div v-for="(book,key) in books" :key='key' class="card m-3" style="width: 18rem;">
             <router-link class="card-img-top h-50" v-if="book.fileUrl == null" :to="{ name: 'book', params: { id: book.id }}">
@@ -42,6 +48,7 @@ export default {
       domain:configHelper.domain,
       books:[],
       quantity:1,
+      searched:"",
     }
   },
   mounted(){
@@ -62,6 +69,16 @@ export default {
             .then(res=>{
               console.log(res)
             })
+    },
+    search(){
+      let search = {
+        "search": this.searched
+      }
+      axios.post(configHelper.domain+'/api/books/search',search)
+          .then(res=>{
+            console.log(res.data)
+            this.books = res.data
+          })
     }
   },
   computed: {

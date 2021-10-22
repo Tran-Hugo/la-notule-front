@@ -4,6 +4,13 @@
             <router-link :to="{ name: 'addBook'}"><button type="button" class="btn btn-primary me-2">Ajouter un livre</button></router-link>
         </div>
         <br>
+        <div class="d-flex justify-content-end col-10">
+            <form class="d-flex" @submit.prevent="search">
+                <input class="form-control me-2" type="search" placeholder="Search" v-model="searched" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        <br>
         <div class="d-flex justify-content-center">
             <div class="col-10 ">
                 <table class="table">
@@ -56,6 +63,7 @@ export default {
     data(){
         return{
             books:[],
+            searched:'',
         }
     },
     mounted(){
@@ -72,6 +80,16 @@ export default {
                     if(res.status==204){
                         this.$router.go()
                     }
+                })
+        },
+        search(){
+            let search = {
+                "search": this.searched
+            }
+            axios.post(configHelper.domain+'/api/books/search',search)
+                .then(res=>{
+                    console.log(res.data)
+                    this.books = res.data
                 })
         }
     },
