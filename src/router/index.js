@@ -16,6 +16,7 @@ import addCat from '../views/addCategory.vue'
 import editCat from '../views/editCat.vue'
 import ordersAdmin from '../views/orderAdmin.vue'
 import order from '../views/order.vue'
+import category from '../views/category.vue'
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
     path:'/book/:id',
     name:'book',
     component:book
+  },
+  {
+    path:'/category/:id',
+    name:'category',
+    component:category
   },
   {
     path: '/about',

@@ -7,6 +7,7 @@
               <h1 class="border-bottom">{{book.title}}</h1>
               <br class="border-bottom">
               <p>de : {{book.author}}</p>
+              <p>Catégories : <router-link v-for="(cat,key) in book.category" :key='key'  :to="{ name: 'category', params: { id: cat.id }}"><span class="badge bg-primary rounded-pill me-2">{{cat.name}} </span></router-link></p>
               <p>Description : {{book.description}}</p>
               <p v-if="book.quantity<3" class="text-danger">en stock : {{book.quantity}}</p>
               <p v-else>en stock : {{book.quantity}}</p>

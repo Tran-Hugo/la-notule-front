@@ -21,6 +21,9 @@
                         <th scope="row">{{category.id}}</th>
                         <td>{{category.name}}</td>
                         <td>
+                            <router-link :to="{ name: 'category', params: { id: category.id }}">
+                                <button type="button" class="btn btn-success me-2">voir</button>
+                            </router-link>
                             <router-link :to="{ name: 'editCat', params: { id: category.id }}">
                                 <button type="button" class="btn btn-warning me-2">éditer</button>
                             </router-link>

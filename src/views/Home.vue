@@ -1,6 +1,15 @@
 <template>
   <body class="d-flex align-items-center flex-column">
-      <h1>this is the homepage</h1>
+      <h1>Votre librairie vous présente</h1>
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Catégories
+      </button>
+      <br>
+      <div class="collapse" id="collapseExample">
+          <router-link v-for="(cat,key) in Categories" :key='key'  :to="{ name: 'category', params: { id: cat.id }}">
+            <span class="badge bg-primary rounded-pill me-2">{{cat.name}}</span>
+          </router-link>
+      </div>
       <div class="d-flex justify-content-end col-12">
           <form class="d-flex" @submit.prevent="search">
             <input class="form-control me-2" type="search" placeholder="Search" v-model="searched" aria-label="Search">
@@ -40,18 +49,23 @@ import axios from 'axios'
 import configHelper from '../helpers/configHeader'
 import {mapGetters} from 'vuex'
 
-
 export default {
   name:'home',
   data(){
     return {
       domain:configHelper.domain,
+      Categories:[],
       books:[],
       quantity:1,
       searched:"",
     }
   },
   mounted(){
+    axios.get(configHelper.domain+"/api/categories")
+        .then(data => {
+            console.log(data.data['hydra:member'])
+            this.Categories = data.data['hydra:member']
+        })
     axios.get(configHelper.domain+'/api/books')
         .then(res=>{
           console.log(res.data['hydra:member'])
