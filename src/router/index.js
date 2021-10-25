@@ -17,6 +17,9 @@ import editCat from '../views/editCat.vue'
 import ordersAdmin from '../views/orderAdmin.vue'
 import order from '../views/order.vue'
 import category from '../views/category.vue'
+import userDashboard from '../views/userDashboard.vue'
+import userInfo from '../views/userInfo.vue'
+import ordersList from '../views/userOrders.vue'
 
 const routes = [
   {
@@ -68,6 +71,27 @@ const routes = [
     component:order
   },
   {
+    path:'/myAccount',
+    name:'account',
+    component:userDashboard,
+    children:[
+      {
+        path: '/myAccount/',
+        redirect: '/myAccount/userInfo', // default child path
+      },
+      {
+        path:'/myAccount/userInfo',
+        name:'userInfo',
+        component:userInfo
+      },
+      {
+        path:'/myAccount/OrdersList',
+        name:'ordersList',
+        component:ordersList
+      },
+    ]
+  },
+  {
     path:'/admin',
     name:'admin',
     component:dashboard,
@@ -96,6 +120,10 @@ const routes = [
       }
     },
     children:[
+      {
+        path: '/admin',
+        redirect: '/admin/books', // default child path
+      },
       {
         path:'/admin/books',
         name:'booksAdmin',

@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <h1>{{cart}}</h1>
     <img alt="Vue logo" class="" src="../assets/logo.png">
     <div class="container">
     <form>
@@ -33,13 +32,7 @@
 // @ is an alias to /src
 
 import {mapState, mapGetters} from 'vuex'
-// import axios from 'axios'
 
-// const test = axios.create({
-//   timeout: 10000,
-//   withCredentials: true,
-//   headers: {
-//     'Accept': 'application/json'}});
 export default {
   name: 'Home',
   data(){

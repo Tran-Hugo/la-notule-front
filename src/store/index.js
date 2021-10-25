@@ -15,14 +15,20 @@ export default createStore({
       state:{
         token: localStorage.getItem('token'),
         role:[],
-        cart:"",
+        id:'',
+        cart:'',
         refreshToken:'',
       },
       getters:{
+        getId:state=>state.id,
         getCart: state=>state.cart,
         getToken: state=>state.token,
+        getRole: state=>state.role,
       },
       mutations:{
+        SET_ID(state,id){
+          state.id = id
+        },
         SET_ROLE(state,role){
           state.role = role
         },
@@ -59,15 +65,17 @@ export default createStore({
                         .then(res=>{
                           console.log(res.data.data.id);
                           let role = res.data.data['roles'][0];
-                          let cart = res.data.data['cart'] 
+                          let cart = res.data.data['cart']
+                          let userId = res.data.data.id
                           let refreshToken = res.data.refresh_token;
                           localStorage.setItem( 'token',res.data.token );
                           let token = localStorage.getItem('token')
+                          commit('SET_ID',userId)
                           commit('SET_TOKEN',token)
                           commit('SET_CART',cart)
                           commit('SET_ROLE',role);
                           commit('SET_REFRESH_TOKEN',refreshToken);
-                          router.go()
+                          window.location.href = "/";
                           })
         },
         test({commit}){
@@ -91,21 +99,10 @@ export default createStore({
           commit('RESET_CART')
           commit('RESET_ROLE')
           commit('RESET_REFRESH_TOKEN')
+          router.push("/")
         },
       }
     }, //fin login module
-    orderModule:{
-      state: {
-        orderUserId:''
-      },
-      mutations: {
-        SET_ORDERUSERID(state,id){
-          state = id
-        }
-      },
-      actions: {
-      },
-    }//fin orderModule
   },
   plugins: [createPersistedState()],
 })
