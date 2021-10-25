@@ -1,10 +1,11 @@
 <template>
-  <h1>Commande {{id}}</h1>
-  <div class="mb-3" v-for="(product,key) in order.products" :key="key">
-      <p>titre : {{product.title}}</p>
-      <p>quantité : {{product.quantity}}</p>
-      <p>prix : {{product.price}}€</p>
+  <h1>Identifiant commande : {{id}}</h1>
+  <div class="mb-3 card" v-for="(product,key) in order.products" :key="key">
+      <p class="card-text">titre : {{product.title}}</p>
+      <p class="card-text">prix : {{product.price}}€</p>
+      <p class="card-text">quantité : {{product.quantity}}</p>
   </div>
+  <h4>Total : {{order.price}}€</h4>
 </template>
 
 <script>

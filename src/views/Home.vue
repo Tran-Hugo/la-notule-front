@@ -63,12 +63,10 @@ export default {
   mounted(){
     axios.get(configHelper.domain+"/api/categories")
         .then(data => {
-            console.log(data.data['hydra:member'])
             this.Categories = data.data['hydra:member']
         })
     axios.get(configHelper.domain+'/api/books')
         .then(res=>{
-          console.log(res.data['hydra:member'])
           this.books = res.data['hydra:member']
         })
   },

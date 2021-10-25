@@ -44,11 +44,8 @@ export default {
                 displayError.textContent = "";
             }
         })
-        axios.post(configHelper.domain+"/payment/"+this.cart)
+        axios.get(configHelper.domain+"/payment/"+this.cart,configHelper.config)
             .then(res=>{
-                if(res.status == "404"){
-                    this.$router.push(-1)
-                }
                 console.log(res.data)
                 this.intentSecret = res.data.intentSecret
                 this.cartId = res.data.cart['id']  

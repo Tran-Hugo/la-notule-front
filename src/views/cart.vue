@@ -35,7 +35,7 @@ export default {
     }
   },
   mounted(){
-    axios.get(configHelper.domain+"/api/carts/"+this.cart)
+    axios.get(configHelper.domain+"/api/carts/"+this.cart, configHelper.config)
         .then(data => {
           console.log(data.data);
           this.cartItems = data.data.cartItems
