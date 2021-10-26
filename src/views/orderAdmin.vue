@@ -47,7 +47,7 @@ export default {
     mounted(){
         axios.get(configHelper.domain+'/api/orders')
             .then(res=>{
-                console.log(res.data["hydra:member"])
+                console.log(res)
                 this.orders = res.data["hydra:member"]
             })
     },
