@@ -35,7 +35,7 @@
 
 <script>
 import axios from "axios"
-import configHelper from '../helpers/configHeader.js'
+import configHelper from '../../../helpers/configHeader.js'
 
 export default {
     name:'ordersAdmin',

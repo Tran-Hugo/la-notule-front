@@ -15,7 +15,7 @@
 <script>
 import axios from 'axios'
 import {mapGetters} from 'vuex'
-import configHelper from '../helpers/configHeader'
+import configHelper from '../../helpers/configHeader'
 
 let stripe = window.Stripe('pk_test_51JinhbIWZlqy6WjcZXGkpfEZhzIxhrVBvtHJpQTC8dUZ2fBM51VHUJ83Ow6je0sM4tV1RJlRk5tTlkquPN3J3lP800Y24MdTrk'),
     elements = stripe.elements(),

@@ -24,7 +24,7 @@
 // @ is an alias to /src
 import axios from 'axios'
 import {mapGetters} from 'vuex'
-import configHelper from '../helpers/configHeader.js'
+import configHelper from '../../helpers/configHeader.js'
 
 export default {
   name: 'cart',

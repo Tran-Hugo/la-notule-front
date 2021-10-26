@@ -1,6 +1,6 @@
 <template>
 <div class="d-flex justify-content-center">
-    <form class="col-6" @submit.prevent="editBook(id)">
+    <form class="col-6" @submit.prevent="addBook">
                 <div class="mb-3">
                     <label class="form-label">Titre</label>
                     <input type="text" v-model="title" class="form-control">
@@ -22,11 +22,14 @@
                     <input type="number" v-model="quantity" class="form-control">
                 </div>
                 <div class="mb-3">
+                    <!-- <label class="form-label">Catégorie</label>
+                    <select class="form-select" multiple aria-label="multiple select example" v-model="key">
+                        
+                        <option v-for="(cat,index) in Categories" :key="index" :value="cat['id']">{{cat.name}}</option>
+                    </select>   -->
                     <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         Catégories
                     </button>
-                    <br>
-                    <br>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body d-flex">
                             <div v-for="(cat,index) in Categories" :key="index">
@@ -42,67 +45,42 @@
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Image</label>
-                    <img v-if="fileUrl == null" :src="domain+'/images/no-image.jpg'" alt="..." class="col-12">
-                    <img v-else :src="domain+fileUrl" alt="" class="col-12">
-                    <div>
-                        <input class="form-check-input" type="checkbox" v-model="supprImg" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Supprimer l'image
-                        </label>
-                    </div>
-                    <br>
-                    <br>
                     <input class="form-control" type="file" id="formFile">
                 </div>                
                 
-                <button type="submit" class="btn btn-primary">éditer</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
 </div>
+  
 </template>
 
 <script>
 import axios from 'axios'
-import configHelper from '../helpers/configHeader'
+import headerApiProject from '../../../helpers/configHeader'
+
 
 export default {
-    name:'editBook',
+    name:'addBook',
     data(){
-        return{
+        return {
             Categories:[],
             title:'',
             author:'',
             description:'',
             price:'',
             quantity:'',
-            key:[],
-            supprImg:'false',
-            domain:configHelper.domain,
-            fileUrl:null,
-            id:this.$route.params.id,
+            key:[] //1 parce que v-model ignore le selected et met la valeur que l'on rentre ici comme selected
         }
     },
     mounted(){
-        axios.get(configHelper.domain+"/api/categories")
+        axios.get(headerApiProject.domain+"/api/categories")
         .then(data => {
             console.log(data.data['hydra:member'])
             this.Categories = data.data['hydra:member']
         })
-        axios.get(configHelper.domain+'/api/books/'+this.id)
-            .then(res=>{
-                console.log(res.data)
-                this.title = res.data.title
-                this.author = res.data.author
-                this.description = res.data.description
-                this.price = res.data.price
-                this.quantity = res.data.quantity
-                this.fileUrl = res.data.fileUrl
-                res.data.category.forEach(element => {
-                    this.key.push(element.id)
-                });
-            })
     },
     methods:{
-        editBook(id){
+        addBook(){
             let files = document.querySelector('#formFile').files
             let formData = new FormData();
             formData.append('title', this.title);
@@ -111,14 +89,15 @@ export default {
             formData.append('price', this.price);
             formData.append('quantity', this.quantity);
             formData.append('categories', this.key);
-            formData.append('supprImg',this.supprImg)
             formData.append('file', files[0]);
 
-            axios.post(configHelper.domain+"/api/books/edit/"+id,formData,configHelper.config)
+            axios.post(headerApiProject.domain+'/api/books/new', formData,headerApiProject.config)
                 .then(res=>{
                     console.log(res)
                 })
-        },
+
+
+        }
     },
 }
 </script>

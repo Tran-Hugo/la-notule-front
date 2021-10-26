@@ -12,7 +12,7 @@
 
 <script>
 import axios from 'axios'
-import configHelper from '../helpers/configHeader'
+import configHelper from '../../../helpers/configHeader'
 
 export default {
     name:'addCategory',
