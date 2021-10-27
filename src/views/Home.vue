@@ -1,5 +1,6 @@
 <template>
   <body class="d-flex align-items-center flex-column">
+    <div v-for="(cat,key) in Categories" :key="key" >{{cat.name}} <span v-for="(book,key) in cat.books" :key="key">{{book.title}}, </span></div>
       <h1>Votre librairie vous présente</h1>
       <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             Catégories
@@ -63,7 +64,7 @@ export default {
   mounted(){
     axios.get(configHelper.domain+"/api/categories")
         .then(data => {
-            this.Categories = data.data['hydra:member']
+            this.Categories = data.data['hydra:member'];
         })
     axios.get(configHelper.domain+'/api/books')
         .then(res=>{
