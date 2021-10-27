@@ -2,7 +2,7 @@
 {{message}}
   <body>
       <form class="d-flex justify-content-center" @submit.prevent="submit" id="payment-form">
-        <div class="form-row col-10 col-lg-6">
+        <div class="form-row col-10 col-md-6 col-lg-6">
             <div id="card-elements" v-on:change="cardChange(event)"></div>
             <div id="card-errors" role="alert"></div>
         <br>
