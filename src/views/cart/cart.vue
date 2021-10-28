@@ -35,12 +35,16 @@ export default {
     }
   },
   mounted(){
-    axios.get(configHelper.domain+"/api/carts/"+this.cart, configHelper.config)
-        .then(data => {
-          console.log(data.data);
-          this.cartItems = data.data.cartItems
-          this.total = data.data.total
-        })
+     const cart = async () => {
+      const data = await  axios.get(configHelper.domain+"/api/carts/"+this.cart, configHelper.config)
+           
+        console.log(data.data);
+        this.cartItems = data.data.cartItems
+        this.total = data.data.total
+        
+    }
+    
+    cart()
   },
   methods:{
     removeCart(){
@@ -68,23 +72,26 @@ export default {
             this.$router.go()
           
     },
-   plusCartItem(id){
+  async plusCartItem(id){
       let cartItemId = {
         'cartItemId': id
       };
-     axios.post(configHelper.domain+'/cartItems/plus',cartItemId)
-          .then(
-            res=>{
-              console.log(res)
-            }
-          )
-            this.$router.go()
+      await axios.post(configHelper.domain+'/cartItems/plus',cartItemId)
+
+      const data = await axios.get(configHelper.domain+"/api/carts/"+this.cart, configHelper.config)
+            console.log(data.data);
+                this.cartItems = data.data.cartItems
+                this.total = data.data.total
+       
+            // this.$router.go()
           
     },
-    deleteCartItem(id){
-      axios.delete(configHelper.domain+'/cartItems/delete/'+id)
-          .then(res=>{console.log(res)
-          this.$router.go()})
+   async deleteCartItem(id){
+      await axios.delete(configHelper.domain+'/cartItems/delete/'+id)
+          const data = await axios.get(configHelper.domain+"/api/carts/"+this.cart, configHelper.config)
+            console.log(data.data);
+                this.cartItems = data.data.cartItems
+                this.total = data.data.total
     }
   },
   computed: {
