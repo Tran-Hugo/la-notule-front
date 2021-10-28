@@ -28,6 +28,18 @@ export default {
                 this.name=res.data.name
             })
     },
+    methods:{
+        editCategory(){
+            let category = {
+                "name": this.name
+            }
+            axios.put(configHelper.domain+'/api/categories/'+this.id,category,configHelper.config)
+                .then(res=>{
+                    console.log(res)
+                    alert('Catégorie éditée')
+                })
+        }
+    }
 }
 </script>
 

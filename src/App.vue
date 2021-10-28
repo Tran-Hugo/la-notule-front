@@ -27,7 +27,7 @@
             <li @click="isOpen = !isOpen" v-if="token"><router-link to="/myAccount">Mon compte</router-link></li>
             <li @click="isOpen = !isOpen" v-if="role == 'ROLE_ADMIN'"><router-link to="/admin">Admin</router-link></li>
             <li>Catégories :</li>
-            <li @click="isOpen = !isOpen" v-for="(cat,key) in Categories" :key="key"><router-link :to="{ name: 'category', params: { id: cat.id }}">{{cat.name}}</router-link></li>
+            <li class="cats" @click="isOpen = !isOpen" v-for="(cat,key) in Categories" :key="key"><router-link :to="{ name: 'category', params: { id: cat.id }}">{{cat.name}}</router-link></li>
         </ul>
     </nav>
 </header>
@@ -72,12 +72,9 @@ export default {
 
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  font-family: Arvo, Helvetica, Arial, sans-serif;
 }
 .fas.fa-bars {
     font-size: 4em;
@@ -125,7 +122,7 @@ export default {
 }
 
 main{
-  padding-top:22vh
+  padding-top:21vh
 }
 
 .burnav form {
@@ -143,6 +140,12 @@ main{
     height: 80%;
     margin-top: -5vh;
 }
+
+.cats{
+  font-size: 0.7em;
+  margin-left: 27vw;
+}
+
 
 @media screen and (min-width: 1024px) {
   main{

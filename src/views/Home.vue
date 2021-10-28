@@ -1,4 +1,5 @@
 <template>
+<div class="corps">
   <div class="d-flex align-items-center flex-column">
     <div v-for="(cat,key) in Categories" :key="key" >{{cat.name}} <span v-for="(book,key) in cat.books" :key="key">{{book.title}}, </span></div>
       <h1>Votre librairie vous présente</h1>
@@ -16,6 +17,12 @@
             <input class="form-control me-2" type="search" placeholder="Search" v-model="searched" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
+      </div>
+      <div class="mb-3 mt-3" v-for="(cat,key) in Categories" :key="key">
+          <h3>{{cat.name}}</h3>
+          <div class="col-12 cardContainer d-flex justify-content-between flex-nowrap">
+              <card @add-cartitem="addCartItem" class="me-3 ms-3" v-for="(book,key) in cat.books" :key="key" :lien="book.fileUrl" :titre="book.title" :auteur="book.author" :description="book.description" :prix="book.price" :bookId="book.id"/>
+          </div>
       </div>
       <div class="d-flex flex-wrap justify-content-center">
           <div v-for="(book,key) in books" :key='key' class="card m-3" style="width: 18rem;">
@@ -43,15 +50,21 @@
       </div>
       
   </div>
+</div>
+  
 </template>
 
 <script>
 import axios from 'axios'
 import configHelper from '../helpers/configHeader'
 import {mapGetters} from 'vuex'
+import card from '@/components/card.vue'
 
 export default {
   name:'home',
+  components:{
+        card,
+    },
   data(){
     return {
       domain:configHelper.domain,
@@ -72,12 +85,13 @@ export default {
         })
   },
   methods:{
-    addCartItem(bookId){
+    addCartItem(bookId,quantity){
         let cartItem = {
           "book":bookId,
           "cart":this.cart,
-          "quantity":this.quantity
+          "quantity":quantity
         }
+        console.log(cartItem)
         axios.post(configHelper.domain+'/cartItems/add',cartItem)
             .then(res=>{
               console.log(res)
@@ -103,5 +117,11 @@ export default {
 </script>
 
 <style>
-
+.corps{
+  background-color: #FFF3DD;
+}
+.cardContainer{
+  overflow-x: scroll;
+  max-width: 100vw;
+}
 </style>
