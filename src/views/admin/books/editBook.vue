@@ -117,6 +117,9 @@ export default {
             axios.post(configHelper.domain+"/api/books/edit/"+id,formData,configHelper.config)
                 .then(res=>{
                     console.log(res)
+                    if(res.status == 200){
+                        alert('Livre édité')
+                    }
                 })
         },
     },

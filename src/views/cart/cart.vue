@@ -69,7 +69,10 @@ export default {
       };
       await axios.post(configHelper.domain+'/cartItems/minus',cartItemId);
           
-            this.$router.go()
+      const data = await axios.get(configHelper.domain+"/api/carts/"+this.cart, configHelper.config)
+            console.log(data.data);
+                this.cartItems = data.data.cartItems
+                this.total = data.data.total      
           
     },
   async plusCartItem(id){

@@ -1,53 +1,30 @@
 <template>
 <div class="corps">
   <div class="d-flex align-items-center flex-column">
-    <div v-for="(cat,key) in Categories" :key="key" >{{cat.name}} <span v-for="(book,key) in cat.books" :key="key">{{book.title}}, </span></div>
-      <h1>Votre librairie vous présente</h1>
-      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Catégories
-      </button>
-      <br>
-      <div class="collapse" id="collapseExample">
-          <router-link v-for="(cat,key) in Categories" :key='key'  :to="{ name: 'category', params: { id: cat.id }}">
-            <span class="badge bg-primary rounded-pill me-2">{{cat.name}}</span>
-          </router-link>
-      </div>
-      <div class="d-flex justify-content-end col-12">
+    <div class="banniere">
+      <img class="col-12" src="@/assets/typewriter.jpg" alt="typewriter.jpg">
+      <h1 class="accroche col-12 text-center">Découvrez des milliers d'oeuvres littéraires</h1>
+    </div>
+      <div class="d-flex justify-content-center col-12 mt-3">
           <form class="d-flex" @submit.prevent="search">
-            <input class="form-control me-2" type="search" placeholder="Search" v-model="searched" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2" type="search" placeholder="Rechercher" v-model="searched" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Rechercher</button>
           </form>
       </div>
-      <div class="mb-3 mt-3" v-for="(cat,key) in Categories" :key="key">
-          <h3>{{cat.name}}</h3>
-          <div class="col-12 cardContainer d-flex justify-content-between flex-nowrap">
-              <card @add-cartitem="addCartItem" class="me-3 ms-3" v-for="(book,key) in cat.books" :key="key" :lien="book.fileUrl" :titre="book.title" :auteur="book.author" :description="book.description" :prix="book.price" :bookId="book.id"/>
-          </div>
+      <div class="col-12 mt-3 d-flex flex-nowrap tagsContainer">
+          <router-link class="ms-1" v-for="(cat,key) in Categories" :key='key'  :to="{ name: 'category', params: { id: cat.id }}">
+            <span class="badge rounded-pill me-2">{{cat.name}}</span>
+          </router-link>
       </div>
-      <div class="d-flex flex-wrap justify-content-center">
-          <div v-for="(book,key) in books" :key='key' class="card m-3" style="width: 18rem;">
-            <router-link class="card-img-top h-50" v-if="book.fileUrl == null" :to="{ name: 'book', params: { id: book.id }}">
-              <img :src="this.domain+'/images/no-image.jpg'" class="card-img-top h-100" alt="...">
-              </router-link>
-            <router-link class="card-img-top h-50" v-else :to="{ name: 'book', params: { id: book.id }}">
-              <img :src="this.domain+book.fileUrl" class="card-img-top h-100" alt="...">
-            </router-link>
-            <div class="card-body">
-              <router-link :to="{ name: 'book', params: { id: book.id }}">
-                <h5 class="card-title">{{book.title}}</h5>
-              </router-link>
-              <p class="card-text">{{book.author}}</p>
-              <p class="card-text">{{book.description}}</p>
-              <p class="card-text">{{book.price}}€</p>
-              <label v-if="book.quantity !==0" for="">quantité</label>
-              <br v-if="book.quantity !==0">
-              <input v-if="book.quantity !==0" class="col-2 mb-2" type="number" v-model="quantity" min="0">
-              <br v-if="book.quantity !==0">
-              <button @click="addCartItem(book.id)" v-if="book.quantity !==0" class="btn btn-primary"><i class="fas fa-cart-plus"></i>Ajouter au panier</button>
-              <p class="text-danger" v-else>rupture de stock</p>
-            </div>
+      <div class="col-12" v-for="(cat,key) in categoriesSorted" :key="key">
+        <div v-if="cat.books.length!==0">
+          <h3 class='mt-3'>{{cat.name}}</h3>
+          <div class="col-12 cardContainer d-flex justify-content-between flex-nowrap mb-3">
+              <card @add-cartitem="addCartItem" class="me-3 ms-3" v-for="(book,key) in cat.books" :key="key" :stock="book.quantity" :lien="book.fileUrl" :titre="book.title" :auteur="book.author" :description="book.description" :prix="book.price" :bookId="book.id"/>
           </div>
+        </div>
       </div>
+      
       
   </div>
 </div>
@@ -69,19 +46,21 @@ export default {
     return {
       domain:configHelper.domain,
       Categories:[],
+      categoriesSorted:[],
       books:[],
       quantity:1,
       searched:"",
     }
   },
   mounted(){
-    axios.get(configHelper.domain+"/api/categories")
+    axios.get(configHelper.domain+"/api/categoriesLimited")
         .then(data => {
             this.Categories = data.data['hydra:member'];
+            data.data['hydra:member'].forEach(cat=>{
+            if(cat.books.length !==0){
+            this.categoriesSorted.push(cat)
+          }
         })
-    axios.get(configHelper.domain+'/api/books')
-        .then(res=>{
-          this.books = res.data['hydra:member']
         })
   },
   methods:{
@@ -120,8 +99,23 @@ export default {
 .corps{
   background-color: #FFF3DD;
 }
+.tagsContainer{
+  overflow-x: scroll;
+  max-width: 100vw;
+}
+.badge{
+  background-color: #03989E;
+}
 .cardContainer{
   overflow-x: scroll;
   max-width: 100vw;
+}
+.accroche{
+  background-color: rgba(245, 222, 179, 0.58);
+  position: absolute;
+  bottom: -0.5rem;
+}
+.banniere{
+  position: relative;
 }
 </style>

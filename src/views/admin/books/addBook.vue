@@ -94,6 +94,9 @@ export default {
             axios.post(headerApiProject.domain+'/api/books/new', formData,headerApiProject.config)
                 .then(res=>{
                     console.log(res)
+                    if(res.status == 201){
+                        alert('Livre ajouté')
+                    }
                 })
 
 

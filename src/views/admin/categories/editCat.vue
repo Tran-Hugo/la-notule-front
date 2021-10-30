@@ -36,7 +36,9 @@ export default {
             axios.put(configHelper.domain+'/api/categories/'+this.id,category,configHelper.config)
                 .then(res=>{
                     console.log(res)
-                    alert('Catégorie éditée')
+                    if(res.status == 200){
+                        alert('Catégorie éditée')
+                    }
                 })
         }
     }

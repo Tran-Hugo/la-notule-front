@@ -1,4 +1,5 @@
 <template>
+<div v-if="category">
   <h1>Catégorie {{category.name}}</h1>
   <div class="d-flex flex-wrap justify-content-center">
           <div v-for="(book,key) in books" :key='key' class="card m-3" style="width: 18rem;">
@@ -24,6 +25,8 @@
             </div>
           </div>
       </div>
+</div>
+  
 </template>
 
 <script>
@@ -36,7 +39,7 @@ export default {
         return{
             domain:configHelper.domain,
             id:this.$route.params.id,
-            category:[],
+            category:null,
             books:[],
             quantity:1,
         }
@@ -48,6 +51,18 @@ export default {
                 this.category=res.data
                 this.books = res.data.books
             })
+    },
+    watch:{
+      "$route.params.id":function(){
+        if(this.$route.params.id !== undefined){
+          axios.get(configHelper.domain+"/api/categories/"+this.$route.params.id)
+            .then((res)=>{
+                console.log(res.data.books)
+                this.category=res.data
+                this.books = res.data.books
+            })
+        }
+      }
     },
 }
 </script>

@@ -16,7 +16,7 @@
   <div class="barre d-lg-none"></div>
   <nav class="burnav d-lg-none" :class="{open: isOpen}">
         <form class="d-flex" @submit.prevent="search">
-            <input class="form-control me-2" type="search" placeholder="Recherche..." v-model="searched" aria-label="Search">
+            <input class="form-control me-2" type="search" placeholder="Recherche..." aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Rechercher</button>
           </form>
         <ul>
@@ -27,7 +27,9 @@
             <li @click="isOpen = !isOpen" v-if="token"><router-link to="/myAccount">Mon compte</router-link></li>
             <li @click="isOpen = !isOpen" v-if="role == 'ROLE_ADMIN'"><router-link to="/admin">Admin</router-link></li>
             <li>Catégories :</li>
+            <div class="overflow-scroll">
             <li class="cats" @click="isOpen = !isOpen" v-for="(cat,key) in Categories" :key="key"><router-link :to="{ name: 'category', params: { id: cat.id }}">{{cat.name}}</router-link></li>
+            </div>
         </ul>
     </nav>
 </header>
@@ -50,7 +52,7 @@ export default {
     }
   },
   mounted(){
-    axios.get(configHelper.domain+"/api/categories")
+    axios.get(configHelper.domain+"/api/categoriesNames")
         .then(data => {
             this.Categories = data.data['hydra:member'];
         })
@@ -142,7 +144,7 @@ main{
 }
 
 .cats{
-  font-size: 0.7em;
+  font-size: 0.8em;
   margin-left: 27vw;
 }
 

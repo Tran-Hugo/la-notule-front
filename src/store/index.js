@@ -1,7 +1,6 @@
 import { createStore } from 'vuex'
 import createPersistedState from "vuex-persistedstate";
 import axios from 'axios'
-import router from '../router';
 
 export default createStore({
   state: {
@@ -99,7 +98,7 @@ export default createStore({
           commit('RESET_CART')
           commit('RESET_ROLE')
           commit('RESET_REFRESH_TOKEN')
-          router.push("/")
+          window.location.href = "/";
         },
       }
     }, //fin login module

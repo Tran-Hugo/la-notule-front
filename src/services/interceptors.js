@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '../store'
+import router from '../router';
 
 export default
 () =>{
@@ -20,7 +21,7 @@ export default
                         console.log(res)
                         store.commit('SET_TOKEN',res.data.token)
                         localStorage.setItem('token',res.data.token)
-                        // this.$router.go()
+                        router.go()
                     })
             }
         }

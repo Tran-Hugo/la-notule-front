@@ -29,7 +29,9 @@ export default {
             axios.post(configHelper.domain+'/api/categories',category,configHelper.config)
                 .then(res=>{
                     console.log(res)
-                    alert('Catégorie ajoutée')
+                    if(res.status == 201){
+                        alert('Catégorie ajoutée')
+                    }
                 })
         }
     }
