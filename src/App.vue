@@ -137,7 +137,7 @@ export default {
 }
 
 main{
-  padding-top:7vh
+  padding-top:8vh
 }
 
 .burnav form {
@@ -177,6 +177,9 @@ main{
     }
     .barre{
       top:7vh;
+    }
+    .burnav ul{
+      font-size: 1.5rem;
     }
     .form-control{
       font-size: 1rem;

@@ -1,7 +1,7 @@
 <template>
 <div class="corps">
   <div class="d-flex align-items-center flex-column">
-    <div class="banniere">
+    <div class="banniere col-12">
       <img class="col-12" src="@/assets/typewriter.jpg" alt="typewriter.jpg">
       <h1 class="accroche col-12 text-center">Découvrez des milliers d'oeuvres littéraires</h1>
     </div>
@@ -118,24 +118,32 @@ export default {
 .banniere{
   position: relative;
 }
+.banniere img{
+  height: 10rem;
+  object-fit: cover;
+  object-position: center top;
+}
+.form-control {
+  font-size: 1em;
+}
+.btn{
+  font-size: 1em;
+}
 
 @media screen and (min-width: 768px) {
+  .banniere img{
+    height: 15rem;
+  }
   .accroche{
-    padding: 2rem 0;
-    font-size: 2.8rem;
+    padding: 1rem 0;
+    font-size: 1.5rem;
   }
-  .form-control {
-    font-size: 2em;
-  }
-  .btn{
-    height: 100%;
-    font-size: 2em;
-  }
+
   .badge{
-    font-size: 1.5em;
+    font-size: 1rem;
   }
   h3{
-    font-size: 3em;
+    font-size: 1.5rem;
   }
 }
 </style>

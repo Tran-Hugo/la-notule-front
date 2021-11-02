@@ -10,7 +10,7 @@
         <h4 class="text-center">{{titre}}</h4>
       </router-link>
       <p>Auteur : {{auteur}}</p>
-      <p>description : {{description}}</p>
+      <p class="d-none d-lg-block">description : {{description}}</p>
       <p>prix : {{prix}}€</p>
       <div>
         <label v-if="stock !==0" for="">quantité :</label>
@@ -52,30 +52,33 @@ export default {
 <style scoped>
 img{
     height: 50%;
-    min-height: 25vh;
-    max-height: 25vh;
+    min-height: 12rem;
+    max-height: 12rem;
     border-radius: 5px 5px 0px 0px;
 }
 .cardItem{
     background-color: #F5DEB3;
-    min-width: 60vw;
+    min-width: 15rem;
     margin-top: 1vh;
     border-radius: 5px;
-    max-width: 60vw;
+    max-width: 15rem;
+}
+h4{
+    font-size: 1.1rem;
 }
 p{
     text-align: center;
     margin-bottom: 0.3em;
 }
 label{
-    margin-left: 18vw;
+    margin-left: 4rem;
 }
 button{
     background-color: #03989E;
     color:white;
     font-size: 0.8em;
     border-radius: 15px;
-    height: 4vh;
+    height: 2rem;
     border:none;
 }
 a{
@@ -85,25 +88,5 @@ a{
 
 @media screen and (min-width: 768px) {
 
-    img{
-        height: 100%;
-        max-height: 35vh;
-    }
-
-    h4{
-        font-size: 2em;
-    }
-    p{
-        font-size: 2em;
-    }
-    label{
-        font-size: 2em;
-    }
-    input{
-        font-size: 1.5em;
-    }
-    button{
-        font-size:1.5em
-    }
 }
 </style>
