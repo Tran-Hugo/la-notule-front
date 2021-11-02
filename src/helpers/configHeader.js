@@ -1,9 +1,13 @@
-// import store from '../store'
+import store from '../store'
 // Single responsability principle (SOLID)
-export default {config : {
+export default {
+  config:()=>{
+   const config = {
     headers:{
-      Authorization: 'Bearer ' + localStorage.getItem('token')
+      Authorization: 'Bearer ' + store.getters.getToken
+  }}
+  return config;
   }
-  },
+  ,
 domain:'https://127.0.0.1:8000'
 } 

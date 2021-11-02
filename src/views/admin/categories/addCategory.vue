@@ -26,7 +26,7 @@ export default {
             let category = {
                 "name": this.name
             }
-            axios.post(configHelper.domain+'/api/categories',category,configHelper.config)
+            axios.post(configHelper.domain+'/api/categories',category,configHelper.config())
                 .then(res=>{
                     console.log(res)
                     if(res.status == 201){

@@ -20,6 +20,7 @@ import category from '../views/category.vue'
 import userDashboard from '../views/user/userDashboard.vue'
 import userInfo from '../views/user/userInfo.vue'
 import ordersList from '../views/user/userOrders.vue'
+import search from '../views/search.vue'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path:'/category/:id',
     name:'category',
     component:category
+  },
+  {
+    path:'/search/:search',
+    name:'search',
+    component:search
   },
   {
     path: '/about',
@@ -74,9 +80,28 @@ const routes = [
     path:'/myAccount',
     name:'account',
     component:userDashboard,
+    beforeEnter(to, from, next) {
+      if (store.state.loginModule.token) {
+        let config = {
+          headers: {
+            Authorization: "Bearer " + store.state.loginModule.token,
+          },
+        };
+        axios
+          .get("https://127.0.0.1:8000/api/me", config)
+          .then(res=>{
+            if(res.status!==401){
+              next()
+            }
+          }
+            
+            )}
+      else {router.push("/")}
+      },
     children:[
       {
         path: '/myAccount/',
+        name:'accountDefault',
         redirect: '/myAccount/userInfo', // default child path
       },
       {
@@ -122,6 +147,7 @@ const routes = [
     children:[
       {
         path: '/admin',
+        name:'adminDefault',
         redirect: '/admin/books', // default child path
       },
       {

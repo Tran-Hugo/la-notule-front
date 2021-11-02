@@ -53,7 +53,7 @@ export default {
     },
     methods:{
         remove(id){
-            axios.delete(configHelper.domain+"/api/orders/"+id,configHelper.config)
+            axios.delete(configHelper.domain+"/api/orders/"+id,configHelper.config())
                 .then(res=>{
                     if(res.status==204){
                         this.$router.go()

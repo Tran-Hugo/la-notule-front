@@ -44,7 +44,7 @@ export default {
                 displayError.textContent = "";
             }
         })
-        axios.get(configHelper.domain+"/payment/"+this.cart,configHelper.config)
+        axios.get(configHelper.domain+"/payment/"+this.cart,configHelper.config())
             .then(res=>{
                 console.log(res.data)
                 this.intentSecret = res.data.intentSecret

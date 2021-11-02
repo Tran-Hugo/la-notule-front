@@ -36,7 +36,7 @@ export default {
   },
   mounted(){
      const cart = async () => {
-      const data = await  axios.get(configHelper.domain+"/api/carts/"+this.cart, configHelper.config)
+      const data = await  axios.get(configHelper.domain+"/api/carts/"+this.cart, configHelper.config())
            
         console.log(data.data);
         this.cartItems = data.data.cartItems
@@ -69,7 +69,7 @@ export default {
       };
       await axios.post(configHelper.domain+'/cartItems/minus',cartItemId);
           
-      const data = await axios.get(configHelper.domain+"/api/carts/"+this.cart, configHelper.config)
+      const data = await axios.get(configHelper.domain+"/api/carts/"+this.cart, configHelper.config())
             console.log(data.data);
                 this.cartItems = data.data.cartItems
                 this.total = data.data.total      
@@ -81,7 +81,7 @@ export default {
       };
       await axios.post(configHelper.domain+'/cartItems/plus',cartItemId)
 
-      const data = await axios.get(configHelper.domain+"/api/carts/"+this.cart, configHelper.config)
+      const data = await axios.get(configHelper.domain+"/api/carts/"+this.cart, configHelper.config())
             console.log(data.data);
                 this.cartItems = data.data.cartItems
                 this.total = data.data.total
@@ -91,7 +91,7 @@ export default {
     },
    async deleteCartItem(id){
       await axios.delete(configHelper.domain+'/cartItems/delete/'+id)
-          const data = await axios.get(configHelper.domain+"/api/carts/"+this.cart, configHelper.config)
+          const data = await axios.get(configHelper.domain+"/api/carts/"+this.cart, configHelper.config())
             console.log(data.data);
                 this.cartItems = data.data.cartItems
                 this.total = data.data.total

@@ -95,7 +95,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .corps{
   background-color: #FFF3DD;
 }
@@ -117,5 +117,25 @@ export default {
 }
 .banniere{
   position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .accroche{
+    padding: 2rem 0;
+    font-size: 2.8rem;
+  }
+  .form-control {
+    font-size: 2em;
+  }
+  .btn{
+    height: 100%;
+    font-size: 2em;
+  }
+  .badge{
+    font-size: 1.5em;
+  }
+  h3{
+    font-size: 3em;
+  }
 }
 </style>

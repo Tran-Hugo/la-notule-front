@@ -21,7 +21,7 @@ export default {
         }
     },
     mounted(){
-        axios.get(configHelper.domain+'/api/user/orders/'+this.id,configHelper.config)
+        axios.get(configHelper.domain+'/api/user/orders/'+this.id,configHelper.config())
            .then((res)=>{
             //    console.log('on est ici')
               this.order = res.data

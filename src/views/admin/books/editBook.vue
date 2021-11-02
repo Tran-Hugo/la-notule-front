@@ -114,7 +114,7 @@ export default {
             formData.append('supprImg',this.supprImg)
             formData.append('file', files[0]);
 
-            axios.post(configHelper.domain+"/api/books/edit/"+id,formData,configHelper.config)
+            axios.post(configHelper.domain+"/api/books/edit/"+id,formData,configHelper.config())
                 .then(res=>{
                     console.log(res)
                     if(res.status == 201){

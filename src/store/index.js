@@ -1,13 +1,24 @@
 import { createStore } from 'vuex'
 import createPersistedState from "vuex-persistedstate";
 import axios from 'axios'
+import router from '../router';
 
 export default createStore({
   state: {
+    path:null,
+  },
+  getters:{
+    getPath:state=>state.path,
   },
   mutations: {
+    SET_PATH(state,path){
+      state.path = path
+    }
   },
   actions: {
+    setPath({commit},path){
+      commit('SET_PATH',path);
+    }
   },
   modules: {
     loginModule: {
@@ -74,7 +85,8 @@ export default createStore({
                           commit('SET_CART',cart)
                           commit('SET_ROLE',role);
                           commit('SET_REFRESH_TOKEN',refreshToken);
-                          window.location.href = "/";
+                          // window.location.href = "/";
+                          router.push("/");
                           })
         },
         test({commit}){

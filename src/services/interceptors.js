@@ -21,7 +21,12 @@ export default
                         console.log(res)
                         store.commit('SET_TOKEN',res.data.token)
                         localStorage.setItem('token',res.data.token)
-                        router.go()
+                        if(router.currentRoute._value.fullPath.substring(0,6)=="/admin"){
+                            alert('veuillez cliquer à nouveau s\'il vous plait')
+                        } else {
+                            // router.push(store.getters.getPath)
+                            router.push({name:store.getters.getPath})
+                        }
                     })
             }
         }

@@ -82,4 +82,28 @@ a{
     text-decoration: none;
     color:black;
 }
+
+@media screen and (min-width: 768px) {
+
+    img{
+        height: 100%;
+        max-height: 35vh;
+    }
+
+    h4{
+        font-size: 2em;
+    }
+    p{
+        font-size: 2em;
+    }
+    label{
+        font-size: 2em;
+    }
+    input{
+        font-size: 1.5em;
+    }
+    button{
+        font-size:1.5em
+    }
+}
 </style>

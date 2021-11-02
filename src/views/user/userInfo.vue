@@ -19,7 +19,7 @@ export default {
         }
     },
     mounted(){
-        axios.get(configHelper.domain+'/api/users/'+this.id,configHelper.config)
+        axios.get(configHelper.domain+'/api/users/'+this.id,configHelper.config())
             .then(res=>{
                 console.log(res)
                 this.user=res.data

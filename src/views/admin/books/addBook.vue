@@ -56,7 +56,7 @@
 
 <script>
 import axios from 'axios'
-import headerApiProject from '../../../helpers/configHeader'
+import configHelper from '../../../helpers/configHeader'
 
 
 export default {
@@ -73,7 +73,7 @@ export default {
         }
     },
     mounted(){
-        axios.get(headerApiProject.domain+"/api/categories")
+        axios.get(configHelper.domain+"/api/categories")
         .then(data => {
             console.log(data.data['hydra:member'])
             this.Categories = data.data['hydra:member']
@@ -91,7 +91,7 @@ export default {
             formData.append('categories', this.key);
             formData.append('file', files[0]);
 
-            axios.post(headerApiProject.domain+'/api/books/new', formData,headerApiProject.config)
+            axios.post(configHelper.domain+'/api/books/new', formData,configHelper.config())
                 .then(res=>{
                     console.log(res)
                     if(res.status == 201){

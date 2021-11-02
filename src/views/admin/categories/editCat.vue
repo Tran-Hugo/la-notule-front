@@ -33,7 +33,7 @@ export default {
             let category = {
                 "name": this.name
             }
-            axios.put(configHelper.domain+'/api/categories/'+this.id,category,configHelper.config)
+            axios.put(configHelper.domain+'/api/categories/'+this.id,category,configHelper.config())
                 .then(res=>{
                     console.log(res)
                     if(res.status == 200){
