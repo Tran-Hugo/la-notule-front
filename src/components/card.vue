@@ -13,12 +13,12 @@
         <h4 class="text-center">{{titre}}</h4>
       </router-link>
       <p>Auteur : {{auteur}}</p>
-      <p class="d-none d-lg-block">description : {{description}}</p>
       <p>prix : {{prix}}€</p>
       <div>
         <label v-if="stock !==0" for="">quantité :</label>
         <input v-if="stock !==0" class="col-2 mb-2 text-center" type="number" v-model="quantity" min="0"> 
       </div>
+      <p v-if="stock !==0" class="text-success">En Stock</p>
       <button v-if="stock !==0" @click="addToCart(bookId,this.quantity)" class="col-8 align-self-center mb-2" >Ajouter au panier <i class="fas fa-cart-plus"></i></button>
       <p class="text-danger" v-else>rupture de stock</p>
       </div>

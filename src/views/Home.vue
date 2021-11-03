@@ -171,7 +171,7 @@ export default {
     padding-inline: 2rem;
   } */
   .cardContainer::-webkit-scrollbar {
-      height: .5em;
+      height: .3em;
       max-width: 4em;
   }
   .cardContainer::-webkit-scrollbar-thumb {

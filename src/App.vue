@@ -264,7 +264,7 @@ main{
     scrollbar-color: #7f7f7f transparent; /* thumb and track color */
   }
   .cat-container::-webkit-scrollbar {
-      width: 0.5em;
+      width: 0.3em;
     }
   .cat-container::-webkit-scrollbar-thumb {
       background: #03989E;
