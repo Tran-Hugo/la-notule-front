@@ -5,10 +5,10 @@
       <img class="col-12" src="@/assets/typewriter.jpg" alt="typewriter.jpg">
       <h1 class="accroche col-12 text-center">Découvrez des milliers d'oeuvres littéraires</h1>
     </div>
-      <div class="d-flex justify-content-center col-12 mt-3">
+      <div class="d-flex search-div justify-content-center justify-content-lg-start col-12 mt-3">
           <form class="d-flex" @submit.prevent="search">
-            <input class="form-control me-2" type="search" placeholder="Rechercher" v-model="searched" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            <input class="form-control" type="search" placeholder="Rechercher" v-model="searched" aria-label="Search">
+            <button class="bouton-recherche" type="submit">Rechercher</button>
           </form>
       </div>
       <div class="col-12 mt-3 d-flex flex-nowrap tagsContainer">
@@ -16,11 +16,11 @@
             <span class="badge rounded-pill me-2">{{cat.name}}</span>
           </router-link>
       </div>
-      <div class="col-12" v-for="(cat,key) in categoriesSorted" :key="key">
+      <div class="col-12 cat-rows" v-for="(cat,key) in categoriesSorted" :key="key">
         <div v-if="cat.books.length!==0">
           <h3 class='mt-3'>{{cat.name}}</h3>
           <div class="col-12 cardContainer d-flex justify-content-between flex-nowrap mb-3">
-              <card @add-cartitem="addCartItem" class="me-3 ms-3" v-for="(book,key) in cat.books" :key="key" :stock="book.quantity" :lien="book.fileUrl" :titre="book.title" :auteur="book.author" :description="book.description" :prix="book.price" :bookId="book.id"/>
+              <card @add-cartitem="addCartItem" class="me-3 mb-2 ms-3" v-for="(book,key) in cat.books" :key="key" :stock="book.quantity" :lien="book.fileUrl" :titre="book.title" :auteur="book.author" :description="book.description" :prix="book.price" :bookId="book.id"/>
           </div>
         </div>
       </div>
@@ -74,6 +74,9 @@ export default {
         axios.post(configHelper.domain+'/cartItems/add',cartItem)
             .then(res=>{
               console.log(res)
+              if(res.status == 201){
+                alert('article ajouté à votre panier')
+              }
             })
     },
     search(){
@@ -125,9 +128,14 @@ export default {
 }
 .form-control {
   font-size: 1em;
+  border-radius: 5px 0 0 5px;
 }
-.btn{
-  font-size: 1em;
+.bouton-recherche{
+  border: none;
+  background-color: #03989E;
+  color: white;
+  font-size: 0.8em;
+  border-radius: 0 5px 5px 0;
 }
 
 @media screen and (min-width: 768px) {
@@ -144,6 +152,31 @@ export default {
   }
   h3{
     font-size: 1.5rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .banniere img{
+    height: 25rem;
+  }
+  .search-div{
+    margin-left: 2rem;
+  }
+  .tagsContainer{
+    justify-content: end;
+  }
+  .badge{
+    font-size: .75em;
+  }
+  /* .cat-rows{
+    padding-inline: 2rem;
+  } */
+  .cardContainer::-webkit-scrollbar {
+      height: .5em;
+      max-width: 4em;
+  }
+  .cardContainer::-webkit-scrollbar-thumb {
+      background: #03989E;
+      border-radius: 1em;
   }
 }
 </style>

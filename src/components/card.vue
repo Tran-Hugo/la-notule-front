@@ -1,12 +1,15 @@
 <template>
-  <div class="cardItem d-flex flex-column">
-      <router-link v-if="lien == null" :to="{ name: 'book', params: { id: bookId }}">
+  <div class="cardItem d-flex flex-column flex-lg-row">
+      <div>
+          <router-link v-if="lien == null" :to="{ name: 'book', params: { id: bookId }}">
         <img :src="this.domain+'/images/no-image.jpg'" class="card-img-top h-100" alt="...">
       </router-link>
       <router-link v-else :to="{ name: 'book', params: { id: bookId }}">
         <img :src="this.domain+lien" class="col-12">
       </router-link>
-      <router-link :to="{ name: 'book', params: { id: bookId }}">
+      </div>
+      <div class="d-flex justify-content-center justify-content-lg-around flex-column">
+          <router-link :to="{ name: 'book', params: { id: bookId }}">
         <h4 class="text-center">{{titre}}</h4>
       </router-link>
       <p>Auteur : {{auteur}}</p>
@@ -18,6 +21,8 @@
       </div>
       <button v-if="stock !==0" @click="addToCart(bookId,this.quantity)" class="col-8 align-self-center mb-2" >Ajouter au panier <i class="fas fa-cart-plus"></i></button>
       <p class="text-danger" v-else>rupture de stock</p>
+      </div>
+      
   </div>
 </template>
 
@@ -51,9 +56,9 @@ export default {
 
 <style scoped>
 img{
-    height: 50%;
-    min-height: 12rem;
-    max-height: 12rem;
+    height: 100%;
+    min-height: 15rem;
+    max-height: 15rem;
     border-radius: 5px 5px 0px 0px;
 }
 .cardItem{
@@ -86,7 +91,18 @@ a{
     color:black;
 }
 
-@media screen and (min-width: 768px) {
-
+@media screen and (min-width: 992px) {
+    img{
+        /* max-height: unset; */
+        max-width: 15rem;
+        width: 10rem;
+    }
+    .cardItem{
+        min-width: 25rem;
+        max-width: 25rem;
+    }
+    h4{
+        font-weight: bold;
+    }
 }
 </style>

@@ -12,7 +12,8 @@
         </div>
         <br>
         <div class="d-flex justify-content-center">
-            <div class="col-10 ">
+            <div class="overflow-hidden">
+                <div class="col-12 overflow-auto">
                 <table class="table">
                     <br>
 
@@ -49,6 +50,8 @@
 
                 </table>
             </div>
+            </div>
+            
         </div>
         
         

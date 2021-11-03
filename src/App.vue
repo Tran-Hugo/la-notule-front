@@ -1,13 +1,42 @@
 <template>
 <header>
 
-  <div id="nav" class="d-none d-lg-block">
-    <router-link to="/">Home |</router-link>
-    <router-link v-if="token==null" to="/login"> Login |</router-link>
-    <a v-else @click="logout"> Logout |</a>
-    <router-link v-if="token" to="/cart"> Panier <i class="fas fa-shopping-cart"></i> |</router-link>
-    <router-link v-if="token" to="/myAccount"> Mon compte |</router-link>
-    <router-link v-if="role == 'ROLE_ADMIN'" to="/admin"> Admin |</router-link>
+  <div id="nav" class="d-none d-lg-flex flex-column">
+    <div class="logo-desktop">
+      <router-link to="/"><img class="col-12" src="@/assets/logo.svg" alt="logo.svg"></router-link>
+    </div>
+    <form class="d-flex m-3" @submit.prevent="search(searched)" @submit="isOpen = !isOpen">
+            <input class="form-control" type="search" v-model="searched" placeholder="Recherche..." aria-label="Search">
+            <button class="bouton-recherche" type="submit">Rechercher</button>
+    </form>
+    <ul>
+      <li>
+        <router-link to="/">Accueil</router-link>
+      </li>
+      <li>
+        <router-link v-if="token==null" to="/login">Se connecter</router-link>
+        <a v-else @click="logout">Se déconnecter</a>
+      </li>
+      <li v-if="token">
+        <router-link to="/cart">Panier <i class="fas fa-shopping-cart"></i></router-link>
+      </li>
+      <li v-if="token">
+        <router-link to="/myAccount"> Mon compte</router-link>
+      </li>
+      <li v-if="role == 'ROLE_ADMIN'">
+        <router-link to="/admin">Admin</router-link>
+      </li>
+      <li>Catégories :</li>
+      <div class="cat-container">
+        <li class="catDesk" v-for="(cat,key) in Categories" :key="key"><router-link :to="{ name: 'category', params: { id: cat.id }}">{{cat.name}}</router-link></li>
+      </div>
+    </ul>
+    
+    
+    
+    
+    
+    
   </div>
 
 
@@ -81,7 +110,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
 #app {
   font-family: Arvo, Helvetica, Arial, sans-serif;
@@ -137,7 +166,8 @@ export default {
 }
 
 main{
-  padding-top:8vh
+  padding-top:8vh;
+  width:100%;
 }
 
 .burnav form {
@@ -165,6 +195,9 @@ main{
     main{
       padding-top: 10vh;
     }
+    .logo-link{
+      width: 27vw;
+    }
     .burnav{
       top:10vh;
       width: 50vw;
@@ -188,10 +221,73 @@ main{
       font-size: 1rem;
     }
 }
+@media screen and (min-width: 992px) {
+  main{
+      padding-top:unset
+    }
+  #nav{
+    width:20vw ;
+    position:fixed;
+    top: 0;
+    background-color: wheat;
+    height: 100vh;
+  }
+  #nav form .form-control{
+    font-size: 0.8rem;
+    padding: 0.1rem;
+  }
+  #nav form button{
+    border: none;
+    background-color: #03989E;
+    color: white;
+    font-size: 0.8em;
+    border-radius: 0 5px 5px 0;
+  }
+  #nav ul {
+    list-style-type: none;
+    font-size: 1rem;
+  }
+  #nav ul li{
+    padding: 1rem 0;
+  }
+  #nav ul li a{
+    text-decoration: none;
+    color: black;
+  }
+  .catDesk{
+    margin-left: 3rem;
+  }
+  .cat-container{
+    overflow-y: scroll;
+    height: 40%;
+    scrollbar-width: thin;
+    scrollbar-color: #7f7f7f transparent; /* thumb and track color */
+  }
+  .cat-container::-webkit-scrollbar {
+      width: 0.5em;
+    }
+  .cat-container::-webkit-scrollbar-thumb {
+      background: #03989E;
+      border-radius: 1em;
+    }
+  .logo-desktop{
+    background-color: white;
+    padding: 2rem 0;
+  }
+  main{
+    margin-left: 20vw;
+    width: 80vw;
+  }
+}
 
 @media screen and (min-width: 1024px) {
   main{
       padding-top:unset
     }
+  #nav form .form-control{
+    font-size: 1rem;
+    padding: .375rem .75rem;
+  }
+  
 }
 </style>
