@@ -42,7 +42,7 @@
           <router-link to="/admin">Admin</router-link>
         </li>
         <li>Catégories :</li>
-        <div class="cat-container">
+        <div class="cat-container scrollbar-y">
           <li class="catDesk" v-for="(cat, key) in Categories" :key="key">
             <router-link :to="{ name: 'category', params: { id: cat.id } }">{{
               cat.name
@@ -287,6 +287,7 @@ export default {
     top: 0;
     background-color: wheat;
     height: 100vh;
+    /* overflow-y: scroll; à ajouter avec la class .scrollbar-y si jamais le contenu dépasse */
   }
   #nav form .form-control {
     font-size: 0.8rem;
@@ -319,10 +320,10 @@ export default {
     scrollbar-width: thin;
     scrollbar-color: #7f7f7f transparent; /* thumb and track color */
   }
-  .cat-container::-webkit-scrollbar {
+  .scrollbar-y::-webkit-scrollbar {
     width: 0.3em;
   }
-  .cat-container::-webkit-scrollbar-thumb {
+  .scrollbar-y::-webkit-scrollbar-thumb {
     background: #03989e;
     border-radius: 1em;
   }
