@@ -304,7 +304,7 @@ export default {
     font-size: 1rem;
   }
   #nav ul li {
-    padding: 1rem 0;
+    padding: 1.5vh 0;
   }
   #nav ul li a {
     text-decoration: none;
@@ -315,7 +315,7 @@ export default {
   }
   .cat-container {
     overflow-y: scroll;
-    height: 40%;
+    max-height: 25vh;
     scrollbar-width: thin;
     scrollbar-color: #7f7f7f transparent; /* thumb and track color */
   }
