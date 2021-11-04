@@ -50,7 +50,7 @@
           @click="addCartItem(book.id)"
           v-if="book.quantity !== 0"
         >
-          <i class="fas fa-cart-plus"></i>Ajouter au panier
+          <i class="fas fa-cart-plus"></i> Ajouter au panier
         </button>
         <p class="text-danger" v-else>rupture de stock</p>
       </div>
