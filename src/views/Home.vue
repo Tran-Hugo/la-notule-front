@@ -146,7 +146,7 @@ export default {
 }
 .cardContainer {
   overflow-x: scroll;
-  max-width: 75rem;
+  max-width: 100vw;
 }
 .accroche {
   background-color: rgba(245, 222, 179, 0.58);
@@ -203,9 +203,9 @@ export default {
   .badge {
     font-size: 0.75em;
   }
-  /* .cat-rows{
-    padding-inline: 2rem;
-  } */
+  .cardContainer {
+    max-width: 78vw; /** évite le débordement en format desktop*/
+  }
   .scrollbar::-webkit-scrollbar {
     height: 0.3em;
     max-width: 4em;
