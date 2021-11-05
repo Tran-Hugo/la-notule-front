@@ -1,30 +1,19 @@
 <template>
-  <div>
+  <div class="m-3 principale">
     <h4 v-if="cartItems.length == 0">Votre panier est vide</h4>
-    <ul
+    <div
       v-for="(item, key) in cartItems"
       :key="key"
-      class="list-group list-group-flush"
+      
     >
-      <li class="list-group-item">
-        {{ item["book"]["title"] }}
+      <div class="d-flex flex-column p-3">
+        <img :src="this.domain+item['book']['fileUrl']" alt="">
+        <p>{{ item["book"]["title"] }}
         <span class="badge bg-primary rounded-pill me-2">
           {{ item.quantity }}
-        </span>
-        <button
-          type="button"
-          @click="minusCartItem(item.id)"
-          class="btn btn-danger btn-sm me-2"
-        >
-          -
-        </button>
-        <button
-          type="button"
-          @click="plusCartItem(item.id)"
-          class="btn btn-success btn-sm me-2"
-        >
-          +
-        </button>
+        </span></p>
+        
+        <div class="d-flex justify-content-between">
         <button
           type="button"
           @click="deleteCartItem(item.id)"
@@ -32,11 +21,32 @@
         >
           Supprimer
         </button>
-      </li>
-    </ul>
+        <div>
+          <button
+          type="button"
+          @click="minusCartItem(item.id)"
+          class="btn btn-danger btn-sm me-2 btn-plus-minus"
+        >
+          -
+        </button>
+        <button
+          type="button"
+          @click="plusCartItem(item.id)"
+          class="btn btn-success btn-sm me-2 btn-plus-minus"
+        >
+          +
+        </button>
+        </div>
+          
+        </div>
+        
+      </div>
+    </div>
     <br />
-    <h4 v-if="cartItems.length !== 0">Total de votre panier {{ total }}€</h4>
-    <button
+    <div class="p-3">
+      <h5 v-if="cartItems.length !== 0">Total de votre panier {{ total }}€</h5>
+    <div>
+      <button
       v-if="cartItems.length !== 0"
       type="button"
       @click="removeCart"
@@ -49,6 +59,10 @@
         Valider le panier
       </button></router-link
     >
+    </div>
+    </div>
+    
+    
   </div>
 </template>
 
@@ -64,6 +78,7 @@ export default {
     return {
       cartItems: [],
       total: "",
+      domain:configHelper.domain
     };
   },
   mounted() {
@@ -162,3 +177,26 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.principale{
+  border: 1px solid wheat;
+  padding: 1rem;
+}
+img{
+  height: 15rem;
+  width: 10rem;
+  margin: auto;
+}
+p{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-plus-minus{
+  padding:0.2rem 0.7rem;
+}
+.btn{
+  font-size: .85rem;
+}
+</style>
