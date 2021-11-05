@@ -19,9 +19,11 @@
       class="d-flex justify-content-center justify-content-lg-around flex-column"
     >
       <router-link :to="{ name: 'book', params: { id: bookId } }">
-        <h4 class="text-center">{{ titre }}</h4>
+        <h4 v-if="titre.length>21" class="text-center">{{ titre.substring(0,21) }}...</h4>
+        <h4 v-else class="text-center">{{ titre }}</h4>
       </router-link>
-      <p>Auteur : {{ auteur }}</p>
+      <p v-if="auteur.length>15">Auteurs : {{ auteur.substring(0,15) }}...</p>
+      <p v-else>Auteurs : {{ auteur }}</p>
       <p>prix : {{ prix }}€</p>
       <div>
         <label v-if="stock !== 0" for="">quantité :</label>
