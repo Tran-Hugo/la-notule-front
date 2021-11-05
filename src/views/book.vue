@@ -125,6 +125,9 @@ button {
   background-color: #03989e;
 }
 @media screen and (min-width: 992px) {
+  main {
+    padding-top: 20vh;
+  }
   img {
     min-height: 27rem;
     max-height: 30rem;
