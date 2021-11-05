@@ -198,13 +198,13 @@ export default {
     align-self: start;
   }
   .tagsContainer {
-    max-width: 78vw;
+    max-width: 78.9vw; /** évite le débordement en format desktop*/
   }
   .badge {
     font-size: 0.75em;
   }
   .cardContainer {
-    max-width: 78vw; /** évite le débordement en format desktop*/
+    max-width: 78.9vw; /** évite le débordement en format desktop*/
   }
   .scrollbar::-webkit-scrollbar {
     height: 0.3em;
