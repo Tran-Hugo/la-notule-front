@@ -113,7 +113,7 @@ a {
 
 @media screen and (min-width: 992px) {
   img {
-    /* max-height: unset; */
+    max-height: unset;
     max-width: 15rem;
     width: 10rem;
   }
