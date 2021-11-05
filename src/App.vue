@@ -31,15 +31,19 @@
           <a v-else @click="logout">Se déconnecter</a>
         </li>
         <li v-if="token">
-          <router-link to="/cart"
+          <router-link to="/cart" @click="setPath('cart')"
             >Panier <i class="fas fa-shopping-cart"></i
           ></router-link>
         </li>
         <li v-if="token">
-          <router-link to="/myAccount"> Mon compte</router-link>
+          <router-link to="/myAccount" @click="setPath('accountDefault')">
+            Mon compte</router-link
+          >
         </li>
         <li v-if="role == 'ROLE_ADMIN'">
-          <router-link to="/admin">Admin</router-link>
+          <router-link to="/admin" @click="setPath('adminDefault')"
+            >Admin</router-link
+          >
         </li>
         <li>Catégories :</li>
         <div class="cat-container scrollbar-y">
@@ -88,7 +92,7 @@
           <a href="#" @click="logout"> Se déconnecter</a>
         </li>
         <li @click="isOpen = !isOpen" v-if="token">
-          <router-link to="/cart"
+          <router-link to="/cart" @click="setPath('cart')"
             >Panier<i class="fas fa-shopping-cart"></i
           ></router-link>
         </li>
