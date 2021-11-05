@@ -88,6 +88,16 @@ export default {
           .delete(configHelper.domain + "/api/cart_items/" + item.id)
           .then((res) => {
             console.log(res, "OK");
+            axios
+              .get(
+                configHelper.domain + "/api/carts/" + this.cart,
+                configHelper.config()
+              )
+              .then((data) => {
+                if (data.data.cartItems.length == 0) {
+                  this.$router.go();
+                }
+              });
           });
       });
       let resetTotal = {
