@@ -14,7 +14,7 @@
       <div
         class="d-flex search-div justify-content-center justify-content-lg-start mt-3"
       >
-        <form class="d-flex" @submit.prevent="search">
+        <form class="d-flex" @submit.prevent="search(this.searched)">
           <input
             class="form-control"
             type="search"
@@ -113,16 +113,8 @@ export default {
           }
         });
     },
-    search() {
-      let search = {
-        search: this.searched,
-      };
-      axios
-        .post(configHelper.domain + "/api/books/search", search)
-        .then((res) => {
-          console.log(res.data);
-          this.books = res.data;
-        });
+    search(searched) {
+      this.$router.push({ name: "search", params: { search: searched } });
     },
   },
   computed: {
