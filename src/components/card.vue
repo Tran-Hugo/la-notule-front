@@ -126,6 +126,7 @@ a {
   .cardItem:hover{
     position: relative;
     top: -0.3vh;
+    box-shadow: 20px 15px 31px -18px rgba(0,0,0,0.75);
   }
   h4 {
     font-weight: bold;
