@@ -7,7 +7,7 @@
       
     >
       <div class="d-flex flex-column p-3">
-        <img :src="this.domain+item['book']['fileUrl']" alt="">
+        <router-link class="book-link" :to="{name:'book',params:{id:item.book.id}}"><img :src="this.domain+item['book']['fileUrl']" alt=""></router-link>
         <p>{{ item["book"]["title"] }}
         <span class="badge bg-primary rounded-pill me-2">
           {{ item.quantity }}
@@ -183,10 +183,12 @@ export default {
   border: 1px solid wheat;
   padding: 1rem;
 }
+.book-link{
+  margin: auto;
+}
 img{
   height: 15rem;
   width: 10rem;
-  margin: auto;
 }
 p{
   display: flex;

@@ -123,6 +123,10 @@ a {
     min-width: 25rem;
     max-width: 25rem;
   }
+  .cardItem:hover{
+    position: relative;
+    top: -0.3vh;
+  }
   h4 {
     font-weight: bold;
   }
