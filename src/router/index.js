@@ -31,7 +31,7 @@ const routes = [
   {
     path:'/book/:id',
     name:'book',
-    component:book
+    component:book,
   },
   {
     path:'/category/:id',
@@ -188,10 +188,17 @@ const routes = [
     ]
   },
 ]
+const scrollBehavior = (to, from, savedPosition) => {
+  return savedPosition ||
+      {
+          top: 0,
+      }
+}
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
+  scrollBehavior
 })
 
 export default router
