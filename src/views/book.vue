@@ -93,7 +93,7 @@ export default {
         .then((res) => {
           console.log(res);
           if (res.status == 201) {
-            alert("produit ajouté au panier");
+            alert("Article ajouté au panier");
           }
         });
     },
