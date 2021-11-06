@@ -31,8 +31,7 @@ export default {};
 <style scoped>
 footer{
   background-color: wheat;
-  margin-top: 2rem;
-  padding: 1rem 0;
+  padding: 3rem 0 2rem 0;
 }
 ul{
   margin: 0 0 1rem 0;

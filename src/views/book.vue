@@ -1,5 +1,5 @@
 <template>
-  <main class="d-flex justify-content-center d-lg-block mt-3">
+  <main class="d-flex justify-content-center d-lg-block mt-3 mb-3">
     <div class="d-flex flex-column justify-content-around flex-lg-row col-12">
       <img
         v-if="book.fileUrl == null"

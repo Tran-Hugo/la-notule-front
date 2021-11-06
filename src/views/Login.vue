@@ -1,11 +1,11 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" class="" src="../assets/logo.png" />
-    <div class="container">
-      <form>
+<main>
+  <div class="home d-flex align-items-center">
+    <div class="log-container col-8 col-md-6 col-lg-4 col-xl-3 d-flex flex-column">
+      <form class="d-flex flex-column">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label"
-            >Email address</label
+            >Adresse Email</label
           >
           <input
             type="email"
@@ -16,7 +16,7 @@
           />
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
           <input
             type="password"
             v-model="password"
@@ -24,22 +24,21 @@
             id="exampleInputPassword1"
           />
         </div>
-        <div class="mb-3 form-check"></div>
         <button
           type="submit"
           @click.prevent="connectUser"
-          class="btn btn-primary"
+          class="btn-co btn col-9"
         >
-          Submit
+          Connexion
         </button>
       </form>
+  <br />
+  <router-link to="/register" class="text-center"><button class="btn btn-re col-9">Créer un compte</button></router-link>
+  <br />
     </div>
   </div>
-  <button @click="test">TEST</button>
-  <button @click="logout">logout</button>
-  <br />
-  <router-link to="/register">Pas de compte ?</router-link>
-  <br />
+</main>
+  
 
   <!-- </div> -->
 </template>
@@ -69,13 +68,7 @@ export default {
 
       this.$store.dispatch("connexion", this.user);
     },
-    test() {
-      this.$store.dispatch("test");
-    },
-
-    logout() {
-      this.$store.dispatch("logout");
-    },
+    
   },
 
   computed: {
@@ -86,3 +79,47 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+main{
+  min-height: 26rem;
+  background-image: url('../assets/connexion.jpg');
+  background-size: cover;
+}
+.home{
+  min-height: 26rem;
+}
+.log-container{
+  background-color: rgba(255, 243, 221, 0.63);
+  padding: 1rem;
+  border-radius: 5px;
+}
+.form-label {
+  font-size: 1.1em;
+}
+.btn-co {
+  background-color: rgba(245, 222, 179, 0.90);
+  font-size: 1.1em;
+}
+.btn-re{
+  background-color: rgba(3, 152, 158, 0.79);
+  color: white;
+}
+
+@media screen and (min-width: 768px) {
+  .home{
+    min-height: 40rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  main{
+    background-position: center;
+  }
+  .home{
+    min-height: 50rem;
+  }
+  .log-container{
+    margin-left: 5rem;
+  }
+}
+</style>
