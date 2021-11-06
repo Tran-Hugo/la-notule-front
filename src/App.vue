@@ -57,7 +57,7 @@
     </div>
 
     <div class="top-menu col-12 d-flex d-lg-none flex-column align-items-center">
-      <div class="d-flex col-12 align-items-center">
+      <div class="d-flex col-12 align-items-center mb-2">
         <i @click="isOpen = !isOpen" class="fas fa-bars burger"></i>
       <router-link class="logo-link" to="/"
         ><img class="col-12" src="@/assets/logo.svg" alt="logo.svg"
