@@ -108,7 +108,7 @@ main{
 
 @media screen and (min-width: 768px) {
   .home{
-    min-height: 40rem;
+    min-height: 42rem;
   }
 }
 @media screen and (min-width: 992px) {
@@ -116,7 +116,7 @@ main{
     background-position: center;
   }
   .home{
-    min-height: 50rem;
+    min-height: 52rem;
   }
   .log-container{
     margin-left: 5rem;

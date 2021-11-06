@@ -112,7 +112,7 @@ main{
 
 @media screen and (min-width: 768px) {
     .principale{
-        min-height: 40rem;
+        min-height: 42rem;
     }
 }
 @media screen and (min-width: 992px) {
