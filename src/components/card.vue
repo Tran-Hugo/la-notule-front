@@ -122,6 +122,7 @@ a {
   .cardItem {
     min-width: 25rem;
     max-width: 25rem;
+    transition: all 0.25s ease-in-out;
   }
   .cardItem:hover{
     position: relative;
