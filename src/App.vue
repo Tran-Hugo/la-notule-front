@@ -56,14 +56,17 @@
       </ul>
     </div>
 
-    <div class="top-menu col-12 d-flex d-lg-none align-items-center">
-      <i @click="isOpen = !isOpen" class="fas fa-bars burger"></i>
+    <div class="top-menu col-12 d-flex d-lg-none flex-column align-items-center">
+      <div class="d-flex col-12 align-items-center">
+        <i @click="isOpen = !isOpen" class="fas fa-bars burger"></i>
       <router-link class="logo-link" to="/"
         ><img class="col-12" src="@/assets/logo.svg" alt="logo.svg"
       /></router-link>
+      </div>
+      <div class="barre d-lg-none"></div>
     </div>
 
-    <div class="barre d-lg-none"></div>
+    
     <nav class="burnav d-lg-none" :class="{ open: isOpen }">
       <form
         class="d-flex"
@@ -186,9 +189,9 @@ export default {
 .burnav {
   position: fixed;
   left: 0;
-  top: 7vh;
+  top: 6vh;
   width: 85vw;
-  height: 93vh;
+  height: 94vh;
   background-color: #fff3dd;
   z-index: 10;
   transform: translateX(-900px);
@@ -209,23 +212,21 @@ export default {
   transition: 0.3s;
 }
 .barre {
-  height: 3vh;
+  height: 2vh;
   width: 100%;
   background-color: wheat;
-  position: fixed;
-  top: 5vh;
+
   z-index: 10;
 }
 .top-menu {
   width: 100%;
-  height: 5vh;
   background-color: white;
   position: fixed;
   z-index: 10;
 }
 
 .main-container {
-  padding-top: 8vh;
+  padding-top: 6vh;
   width: 100%;
   background-color: #fff3dd;
 }
@@ -253,21 +254,19 @@ export default {
 
 @media screen and (min-width: 768px) {
   .main-container {
-    padding-top: 10vh;
+    padding-top: 7vh;
   }
   .logo-link {
     width: 27vw;
   }
   .burnav {
-    top: 10vh;
+    top: 7vh;
     width: 50vw;
   }
   .fas.fa-bars {
     font-size: 2em;
   }
-  .top-menu {
-    height: 7vh;
-  }
+  
   .barre {
     top: 7vh;
   }
@@ -280,6 +279,24 @@ export default {
   .btn {
     font-size: 1rem;
   }
+}
+@media screen and (min-width: 568px) and (max-height: 540px) {
+  .burnav{
+    height: 90vh;
+    top:12vh
+  }
+}
+@media screen and (min-width: 568px) and (max-height: 440px) {
+  .burnav{
+      height: 84vh;
+      top:16vh
+    }
+}
+@media screen and (min-width: 568px) and (max-height: 360px) {
+.burnav{
+      height: 84vh;
+      top:16vh
+    }
 }
 @media screen and (min-width: 992px) {
   .main-container {
