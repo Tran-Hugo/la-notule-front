@@ -56,8 +56,15 @@
       </div>
     </div>
     <p class="d-none d-lg-block pt-4">Description :</p>
-    <p v-if="book.description == ''" class="d-none d-lg-block pt-4 no-description">Description à venir</p>
-    <p v-else class="d-none d-lg-block ps-4 description">{{ book.description }}</p>
+    <p
+      v-if="book.description == ''"
+      class="d-none d-lg-block pt-4 no-description"
+    >
+      Description à venir
+    </p>
+    <p v-else class="d-none d-lg-block ps-4 description">
+      {{ book.description }}
+    </p>
   </main>
 </template>
 
@@ -130,13 +137,13 @@ button {
     padding-top: 20vh;
   }
   img {
-    min-height: 27rem;
+    min-height: 23rem;
     max-height: 30rem;
   }
-  .no-description{
+  .no-description {
     height: 20vh;
   }
-  .description{
+  .description {
     min-height: 23vh;
   }
 }

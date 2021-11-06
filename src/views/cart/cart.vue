@@ -1,70 +1,83 @@
 <template>
-  <div class="m-3 principale d-flex flex-column justify-content-center">
-    <div v-if="cartItems.length == 0" class="d-flex justify-content-center align-items-center">
-      <h4>Votre panier est vide</h4>
-    </div>
-    <div v-else
-      v-for="(item, key) in cartItems"
-      :key="key"
-      
-    >
-      <div class="d-flex flex-column p-3">
-        <router-link class="book-link" :to="{name:'book',params:{id:item.book.id}}"><img :src="this.domain+item['book']['fileUrl']" alt=""></router-link>
-        <p>{{ item["book"]["title"] }}
-        <span class="badge bg-primary rounded-pill me-2">
-          {{ item.quantity }}
-        </span><span>{{item["book"]["price"]}}€</span></p>
-        
-        <div class="d-flex justify-content-between">
-        <button
-          type="button"
-          @click="deleteCartItem(item.id)"
-          class="btn btn-danger btn-sm me-2"
-        >
-          Supprimer
-        </button>
+  <main>
+    <div class="m-3 principale d-flex flex-column justify-content-center">
+      <div
+        v-if="cartItems.length == 0"
+        class="d-flex justify-content-center align-items-center"
+      >
+        <h4>Votre panier est vide</h4>
+      </div>
+      <div v-else v-for="(item, key) in cartItems" :key="key">
+        <div class="d-flex flex-column flex-md-row p-3">
+          <router-link
+            class="book-link col-md-6"
+            :to="{ name: 'book', params: { id: item.book.id } }"
+            ><img :src="this.domain + item['book']['fileUrl']" alt=""
+          /></router-link>
+          <div class="d-flex flex-column justify-content-center col-md-6">
+            <router-link
+            class="link"
+            :to="{ name: 'book', params: { id: item.book.id } }"
+            ><p>
+              {{ item["book"]["title"] }}
+              <span class="badge bg-primary rounded-pill me-2">
+                {{ item.quantity }} </span
+              ><span>{{ item["book"]["price"] }}€</span>
+            </p></router-link>
+
+            <div class="d-flex justify-content-between">
+              <button
+                type="button"
+                @click="deleteCartItem(item.id)"
+                class="btn btn-danger btn-sm me-2"
+              >
+                Supprimer
+              </button>
+              <div>
+                <button
+                  type="button"
+                  @click="minusCartItem(item.id)"
+                  class="btn btn-danger btn-sm me-2 btn-plus-minus"
+                >
+                  -
+                </button>
+                <button
+                  type="button"
+                  @click="plusCartItem(item.id)"
+                  class="btn btn-success btn-sm me-2 btn-plus-minus"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        v-if="cartItems.length !== 0"
+        class="p-3 d-flex flex-column align-items-center"
+      >
+        <h5 v-if="cartItems.length !== 0">
+          Total de votre panier {{ total }}€
+        </h5>
         <div>
           <button
-          type="button"
-          @click="minusCartItem(item.id)"
-          class="btn btn-danger btn-sm me-2 btn-plus-minus"
-        >
-          -
-        </button>
-        <button
-          type="button"
-          @click="plusCartItem(item.id)"
-          class="btn btn-success btn-sm me-2 btn-plus-minus"
-        >
-          +
-        </button>
+            v-if="cartItems.length !== 0"
+            type="button"
+            @click="removeCart"
+            class="btn btn-danger me-2"
+          >
+            Vider le panier
+          </button>
+          <router-link v-if="cartItems.length !== 0" to="/payment"
+            ><button type="button" class="btn btn-primary">
+              Valider le panier
+            </button></router-link
+          >
         </div>
-          
-        </div>
-        
       </div>
     </div>
-    <div v-if="cartItems.length !== 0" class="p-3">
-      <h5 v-if="cartItems.length !== 0">Total de votre panier {{ total }}€</h5>
-    <div>
-      <button
-      v-if="cartItems.length !== 0"
-      type="button"
-      @click="removeCart"
-      class="btn btn-danger me-2"
-    >
-      Vider le panier
-    </button>
-    <router-link v-if="cartItems.length !== 0" to="/payment"
-      ><button type="button" class="btn btn-primary">
-        Valider le panier
-      </button></router-link
-    >
-    </div>
-    </div>
-    
-    
-  </div>
+  </main>
 </template>
 
 <script>
@@ -79,7 +92,7 @@ export default {
     return {
       cartItems: [],
       total: "",
-      domain:configHelper.domain
+      domain: configHelper.domain,
     };
   },
   mounted() {
@@ -111,7 +124,8 @@ export default {
               )
               .then((data) => {
                 if (data.data.cartItems.length == 0) {
-                  this.$router.go();
+                  this.cartItems = data.data.cartItems;
+                  this.total = data.data.total;
                 }
               });
           });
@@ -180,33 +194,42 @@ export default {
 </script>
 
 <style scoped>
-.principale{
+.principale {
   border: 1px solid wheat;
   padding: 1rem;
   min-height: 25rem;
 }
-.book-link{
+.book-link {
   margin: auto;
 }
-img{
+img {
   height: 15rem;
   width: 10rem;
 }
-p{
+.link{
+  text-decoration: none;
+  color: black;
+}
+p {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.btn-plus-minus{
-  padding:0.2rem 0.7rem;
+.btn-plus-minus {
+  padding: 0.2rem 0.7rem;
 }
-.btn{
-  font-size: .85rem;
+.btn {
+  font-size: 0.85rem;
 }
 
 @media screen and (min-width: 768px) {
-  .principale{
+  .principale {
     min-height: 41rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  main {
+    padding-top: 13vh;
   }
 }
 </style>
