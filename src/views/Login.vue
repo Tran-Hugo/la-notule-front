@@ -85,6 +85,7 @@ main{
   min-height: 26rem;
   background-image: url('../assets/connexion.jpg');
   background-size: cover;
+  background-position: bottom;
 }
 .home{
   min-height: 26rem;
