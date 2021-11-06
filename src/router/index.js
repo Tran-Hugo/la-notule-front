@@ -64,7 +64,25 @@ const routes = [
   {
     path:'/cart',
     name:'cart',
-    component:cart
+    component:cart,
+    beforeEnter(to, from, next) {
+      if (store.state.loginModule.token) {
+        let config = {
+          headers: {
+            Authorization: "Bearer " + store.state.loginModule.token,
+          },
+        };
+        axios
+          .get("https://127.0.0.1:8000/api/me", config)
+          .then(res=>{
+            if(res.status!==401){
+              next()
+            }
+          }
+            
+            )}
+      else {router.push("/")}
+      },
   },
   {
     path: '/payment',

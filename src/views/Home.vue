@@ -98,7 +98,10 @@ export default {
   },
   methods: {
     addCartItem(bookId, quantity) {
-      let cartItem = {
+      if(this.cart == ''){
+        alert('Veuillez vous connecter')
+      } else {
+        let cartItem = {
         book: bookId,
         cart: this.cart,
         quantity: quantity,
@@ -109,9 +112,11 @@ export default {
         .then((res) => {
           console.log(res);
           if (res.status == 201) {
-            alert("article ajouté à votre panier");
+            alert("Article ajouté à votre panier");
           }
         });
+      }
+      
     },
     search(searched) {
       this.$router.push({ name: "search", params: { search: searched } });

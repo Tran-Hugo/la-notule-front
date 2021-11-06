@@ -1,7 +1,9 @@
 <template>
-  <div class="m-3 principale">
-    <h4 v-if="cartItems.length == 0">Votre panier est vide</h4>
-    <div
+  <div class="m-3 principale d-flex flex-column justify-content-center">
+    <div v-if="cartItems.length == 0" class="d-flex justify-content-center align-items-center">
+      <h4>Votre panier est vide</h4>
+    </div>
+    <div v-else
       v-for="(item, key) in cartItems"
       :key="key"
       
@@ -11,7 +13,7 @@
         <p>{{ item["book"]["title"] }}
         <span class="badge bg-primary rounded-pill me-2">
           {{ item.quantity }}
-        </span></p>
+        </span><span>{{item["book"]["price"]}}€</span></p>
         
         <div class="d-flex justify-content-between">
         <button
@@ -42,8 +44,7 @@
         
       </div>
     </div>
-    <br />
-    <div class="p-3">
+    <div v-if="cartItems.length !== 0" class="p-3">
       <h5 v-if="cartItems.length !== 0">Total de votre panier {{ total }}€</h5>
     <div>
       <button
@@ -182,6 +183,7 @@ export default {
 .principale{
   border: 1px solid wheat;
   padding: 1rem;
+  min-height: 25rem;
 }
 .book-link{
   margin: auto;
@@ -200,5 +202,11 @@ p{
 }
 .btn{
   font-size: .85rem;
+}
+
+@media screen and (min-width: 768px) {
+  .principale{
+    min-height: 41rem;
+  }
 }
 </style>
