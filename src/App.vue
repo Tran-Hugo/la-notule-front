@@ -285,18 +285,36 @@ export default {
     height: 90vh;
     top:12vh
   }
+  .burnav ul{
+    font-size: 1rem;
+  }
+  .cats{
+    font-size: 1rem;
+  }
 }
 @media screen and (min-width: 568px) and (max-height: 440px) {
   .burnav{
       height: 84vh;
       top:16vh
     }
+  .burnav ul{
+    font-size: 1rem;
+  }
+  .cats{
+    font-size: 1rem;
+  }
 }
 @media screen and (min-width: 568px) and (max-height: 360px) {
 .burnav{
       height: 84vh;
       top:16vh
     }
+.burnav ul{
+    font-size: 1rem;
+  }
+  .cats{
+    font-size: 1rem;
+  }
 }
 @media screen and (min-width: 992px) {
   .main-container {
