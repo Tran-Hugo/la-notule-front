@@ -28,7 +28,7 @@
           <router-link v-if="token == null" to="/login"
             >Se connecter</router-link
           >
-          <a v-else @click="logout">Se déconnecter</a>
+          <a class="logout-btn" v-else @click="logout">Se déconnecter</a>
         </li>
         <li v-if="token">
           <router-link to="/cart" @click="setPath('cart')"
@@ -314,6 +314,9 @@ export default {
   #nav ul li a {
     text-decoration: none;
     color: black;
+  }
+  .logout-btn{
+    cursor: pointer;
   }
   .catDesk {
     margin-left: 3rem;
