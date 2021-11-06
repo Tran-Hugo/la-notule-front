@@ -1,6 +1,6 @@
 <template>
 <main>
-  <div class="home d-flex align-items-center">
+  <div class="home d-flex align-items-center justify-content-center justify-content-lg-start">
     <div class="log-container col-8 col-md-6 col-lg-4 col-xl-3 d-flex flex-column">
       <form class="d-flex flex-column">
         <div class="mb-3">

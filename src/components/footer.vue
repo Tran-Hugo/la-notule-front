@@ -16,9 +16,9 @@
       </div>
       
       <div class="d-flex justify-content-around align-items-center col-6 col-md-3">
-        <a href="https://www.freepnglogos.com/pics/logo-ig-png" title="Image from freepnglogos.com"><img class="icone" src="https://www.freepnglogos.com/uploads/logo-ig-png/logo-ig-instagram-new-logo-vector-download-13.png"  alt="logo ig, instagram new logo vector download" /></a>
-        <a href="https://www.freepnglogos.com/pics/facebook-logo" title="Image from freepnglogos.com"><img class="icone" src="https://www.freepnglogos.com/uploads/facebook-logo-13.png" alt="logo facebook download png" /></a>
-        <a href="https://www.freepnglogos.com/pics/logo-twitter-png" title="Image from freepnglogos.com"><img class="icone-twitter" src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt="twitter bird symbols png logo" /></a>
+        <a href="https://www.instagram.com/la_notule/?hl=fr"><img class="icone" src="https://www.freepnglogos.com/uploads/logo-ig-png/logo-ig-instagram-new-logo-vector-download-13.png"  alt="logo ig, instagram new logo vector download" /></a>
+        <a href="https://www.facebook.com/Lanotule"><img class="icone" src="https://www.freepnglogos.com/uploads/facebook-logo-13.png" alt="logo facebook download png" /></a>
+        <a href="https://twitter.com/LNotule"><img class="icone-twitter" src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt="twitter bird symbols png logo" /></a>
       </div>
     </div>
   </footer>
