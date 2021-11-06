@@ -17,7 +17,7 @@
           <div id="card-elements" v-on:change="cardChange(event)"></div>
           <div id="card-errors" role="alert"></div>
           <br />
-          <button type="button" @click.prevent="submit" class="btn btn-primary">
+          <button type="button" @click.prevent="submit" class="btn btn-plus">
             Payer {{ cartTotal }}€
           </button>
         </div>
@@ -162,6 +162,10 @@ export default {
   display: flex;
   justify-content: flex-end;
   padding: 0 1rem;
+}
+.btn-plus{
+  background-color: #12BA9E;
+  color: white;
 }
 @media screen and (min-width: 768px) {
   .principale{

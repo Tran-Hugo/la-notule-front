@@ -37,14 +37,14 @@
                 <button
                   type="button"
                   @click="minusCartItem(item.id)"
-                  class="btn btn-danger btn-sm me-2 btn-plus-minus"
+                  class="btn btn-minus btn-sm me-2 btn-plus-minus"
                 >
                   -
                 </button>
                 <button
                   type="button"
                   @click="plusCartItem(item.id)"
-                  class="btn btn-success btn-sm me-2 btn-plus-minus"
+                  class="btn btn-plus btn-sm me-2 btn-plus-minus"
                 >
                   +
                 </button>
@@ -70,7 +70,7 @@
             Vider le panier
           </button>
           <router-link v-if="cartItems.length !== 0" to="/payment"
-            ><button type="button" class="btn btn-primary">
+            ><button type="button" class="btn btn-plus">
               Valider le panier
             </button></router-link
           >
@@ -221,7 +221,18 @@ p {
 .btn {
   font-size: 0.85rem;
 }
-
+.btn-danger{
+  background-color: #EC465A !important;
+  color: white;
+}
+.btn-minus{
+  background-color: #F97068;
+  color: white;
+}
+.btn-plus{
+  background-color: #12BA9E;
+  color: white;
+}
 @media screen and (min-width: 768px) {
   .principale {
     min-height: 41rem;
