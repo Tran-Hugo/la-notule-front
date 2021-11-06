@@ -189,9 +189,9 @@ export default {
 .burnav {
   position: fixed;
   left: 0;
-  top: 6vh;
+  top: 7vh;
   width: 85vw;
-  height: 94vh;
+  height: 93vh;
   background-color: #fff3dd;
   z-index: 10;
   transform: translateX(-900px);
@@ -294,8 +294,8 @@ export default {
 }
 @media screen and (min-width: 568px) and (max-height: 440px) {
   .burnav{
-      height: 84vh;
-      top:16vh
+      height: 82vh;
+      top:18vh
     }
   .burnav ul{
     font-size: 1rem;
@@ -306,8 +306,8 @@ export default {
 }
 @media screen and (min-width: 568px) and (max-height: 360px) {
 .burnav{
-      height: 84vh;
-      top:16vh
+      height: 82vh;
+      top:18vh
     }
 .burnav ul{
     font-size: 1rem;
