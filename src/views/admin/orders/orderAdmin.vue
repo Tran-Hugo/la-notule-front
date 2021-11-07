@@ -1,8 +1,16 @@
 <template>
-  <h4>Commandes</h4>
+  <h4 class="text-center p-2">Commandes</h4>
+  <div class="d-flex justify-content-end col-12">
+            <form class="d-flex" @submit.prevent="search">
+                <input class="form-control" type="search" placeholder="Rechercher" v-model="searched" aria-label="Search">
+                <button class="btn btn-pastel-green me-2" type="submit">Rechercher</button>
+            </form>
+    </div>
   <br>
+  <p class="d-md-none text-end text-primary">glissez le tableau vers la droite ! <i class="fas fa-arrow-right"></i></p>
   <div class="d-flex justify-content-center">
-            <div class="col-10 ">
+        <div class="overflow-hidden d-flex justify-content-center col-10">
+            <div class="col-10 overflow-auto">
                 <table class="table">
                     <br>
 
@@ -31,6 +39,7 @@
                 </table>
             </div>
         </div>
+  </div>
 </template>
 
 <script>
@@ -42,6 +51,7 @@ export default {
     data(){
         return{
             orders:[],
+            searched:'',
         }
     },
     mounted(){
@@ -58,6 +68,15 @@ export default {
                     if(res.status==204){
                         this.$router.go()
                     }
+                })
+        },
+        search(){
+            let search = {
+                "search": this.searched
+            }
+            axios.post(configHelper.domain+'/api/search/order',search,configHelper.config())
+                .then(res=>{
+                    this.orders = res.data["hydra:member"]
                 })
         }
     }
