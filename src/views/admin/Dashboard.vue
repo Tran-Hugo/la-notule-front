@@ -1,13 +1,16 @@
 <template>
-  <div>
-      <h4>Administration</h4>
-        <router-link :to="{ name: 'booksAdmin'}" @click="setPath('booksAdmin')"><button type="button" class="btn btn-primary me-2">Books</button></router-link>
-        <router-link :to="{ name: 'catAdmin'}" @click="setPath('catAdmin')"><button type="button" class="btn btn-secondary me-2">Catégories</button></router-link>
-        <router-link :to="{ name: 'ordersAdmin'}" @click="setPath('ordersAdmin')"><button type="button" class="btn btn-success me-2">Commandes reçues</button></router-link>
-        <br>
+  <main>
+      <h4 class="text-center p-3">Administration</h4>
+      <div class="d-flex justify-content-center">
+          <div class="d-flex justify-content-around col-12 col-md-6 col-xl-5">
+          <router-link :to="{ name: 'booksAdmin'}" @click="setPath('booksAdmin')"><button type="button" class="btn btn-pastel-blue"><i class="fas fa-book"></i> Livres</button></router-link>
+          <router-link :to="{ name: 'catAdmin'}" @click="setPath('catAdmin')"><button type="button" class="btn btn-pastel-pink"><i class="far fa-bookmark"></i> Catégories</button></router-link>
+          <router-link :to="{ name: 'ordersAdmin'}" @click="setPath('ordersAdmin')"><button type="button" class="btn btn-pastel-green"><i class="fas fa-list-ul"></i> Commandes reçues</button></router-link>
+          </div>
+      </div>
         <br>
     <router-view/>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -19,6 +22,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+@import '../../assets/css/btn-colors.css';
 
+main{
+  margin-bottom: 2rem;
+}
+.btn{
+  margin: 0;
+  font-size: .8em;
+}
 </style>

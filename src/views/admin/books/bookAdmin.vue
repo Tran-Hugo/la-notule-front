@@ -1,19 +1,20 @@
 <template>
-  <h4>Books</h4>
-        <div class="d-flex justify-content-end col-10">
-            <router-link :to="{ name: 'addBook'}"><button type="button" class="btn btn-primary me-2">Ajouter un livre</button></router-link>
+  <h4 class="text-center p-2">Livres</h4>
+        <div class="d-flex justify-content-end col-12">
+            <router-link :to="{ name: 'addBook'}"><button type="button" class="btn btn-turquoise me-2">Ajouter un livre</button></router-link>
         </div>
         <br>
-        <div class="d-flex justify-content-end col-10">
+        <div class="d-flex justify-content-end col-12">
             <form class="d-flex" @submit.prevent="search">
-                <input class="form-control me-2" type="search" placeholder="Search" v-model="searched" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input class="form-control" type="search" placeholder="Rechercher" v-model="searched" aria-label="Search">
+                <button class="btn btn-pastel-green me-2" type="submit">Rechercher</button>
             </form>
         </div>
         <br>
+        <p class="d-md-none text-end text-primary">glissez le tableau vers la droite ! <i class="fas fa-arrow-right"></i></p>
         <div class="d-flex justify-content-center">
-            <div class="overflow-hidden">
-                <div class="col-12 overflow-auto">
+            <div class="overflow-hidden d-flex justify-content-center">
+                <div class="col-10 overflow-auto">
                 <table class="table">
                     <br>
 
@@ -38,12 +39,12 @@
                         <td>{{book.price}}€</td>
                         <td>
                             <router-link :to="{ name: 'book', params: { id: book.id }}">
-                                <button type="button" class="btn btn-success me-2">voir</button>
+                                <button type="button" class="btn btn-pastel-green me-2">voir</button>
                             </router-link>
                             <router-link :to="{ name: 'editBook', params: { id: book.id }}">
-                                <button type="button" class="btn btn-warning me-2">éditer</button>
+                                <button type="button" class="btn btn-pastel-yellow me-2">éditer</button>
                             </router-link>
-                            <button type="button" @click="remove(book.id)" class="btn btn-danger me-2">Supprimer</button>
+                            <button type="button" @click="remove(book.id)" class="btn btn-pastel-red me-2">Supprimer</button>
                         </td>
                         </tr>
                     </tbody>
@@ -99,6 +100,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+@import '../../../assets/css/btn-colors.css';
 </style>

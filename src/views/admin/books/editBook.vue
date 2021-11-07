@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-content-center">
-    <form class="col-6" @submit.prevent="editBook(id)">
+    <form class="col-10 col-lg-8" @submit.prevent="editBook(id)">
       <div class="mb-3">
         <label class="form-label">Titre</label>
         <input type="text" v-model="title" class="form-control" />
@@ -22,21 +22,22 @@
         <input type="number" v-model="quantity" class="form-control" />
       </div>
       <div class="mb-3">
-        <button
-          class="btn btn-primary"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseExample"
-          aria-expanded="false"
-          aria-controls="collapseExample"
-        >
-          Catégories
-        </button>
-        <br />
-        <br />
-        <div class="collapse" id="collapseExample">
+        <div class="d-flex justify-content-center">
+            <button
+            class="btn btn-pastel-pink"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseExample"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+          >
+            Catégories
+          </button>
+        </div>
+
+        <div class="collapse mt-2" id="collapseExample">
           <div class="card card-body d-flex">
-            <div v-for="(cat, index) in Categories" :key="index">
+            <div class="d-flex justify-content-center" v-for="(cat, index) in Categories" :key="index">
               <label class="form-check-label me-3" for="flexCheckIndeterminate">
                 {{ cat.name }}
               </label>
@@ -51,28 +52,33 @@
         </div>
       </div>
       <div class="mb-3">
-        <label for="formFile" class="form-label">Image</label>
-        <img
-          v-if="fileUrl == null"
-          :src="domain + '/images/no-image.jpg'"
-          alt="..."
-          class="col-12"
-        />
-        <img v-else :src="domain + fileUrl" alt="" class="col-12" />
-        <div>
-          <input
-            class="form-check-input"
-            type="checkbox"
-            v-model="supprImg"
-            id="flexCheckDefault"
+        <div class="d-flex flex-column align-items-center">
+          <label for="formFile" class="form-label">Image</label>
+          <img
+            v-if="fileUrl == null"
+            :src="domain + '/images/no-image.jpg'"
+            alt="..."
           />
-          <label class="form-check-label" for="flexCheckDefault">
-            Supprimer l'image
-          </label>
+          <img v-else :src="domain + fileUrl" alt="" />
+          <div>
+            <input
+              class="form-check-input"
+              type="checkbox"
+              v-model="supprImg"
+              id="flexCheckDefault"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              Supprimer l'image
+            </label>
+          </div>
+        </div>
+        <div v-if="url" id="preview" class="d-flex flex-column align-items-center justify-content-center">
+          <h5>nouvelle image</h5>
+          <img :src="url" />
         </div>
         <br />
         <br />
-        <input class="form-control" type="file" id="formFile" />
+        <input class="form-control" @change="onFileChange" type="file" id="formFile" />
       </div>
 
       <button type="submit" class="btn btn-primary">éditer</button>
@@ -99,6 +105,7 @@ export default {
       domain: configHelper.domain,
       fileUrl: null,
       id: this.$route.params.id,
+      url: null,
     };
   },
   mounted() {
@@ -147,8 +154,19 @@ export default {
           }
         });
     },
+    onFileChange(e) {
+      const file = e.target.files[0];
+      this.url = URL.createObjectURL(file);
+    },
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+@import '../../../assets/css/btn-colors.css';
+img {
+  max-width: 100%;
+  max-height: 500px;
+  border:1px solid;
+}
+</style>

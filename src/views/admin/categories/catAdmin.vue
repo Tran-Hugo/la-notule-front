@@ -1,5 +1,5 @@
 <template>
-  <h4>Catégories</h4>
+  <h4 class="text-center p-2">Catégories</h4>
   <div class="d-flex justify-content-end col-10">
     <router-link :to="{ name: 'addCategory'}"><button type="button" class="btn btn-primary me-2">Ajouter une Catégorie</button></router-link>
   </div>

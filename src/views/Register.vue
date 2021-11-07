@@ -173,6 +173,7 @@ p{
     }
     .principale{
         min-height: 50rem;
+        margin-left: 5rem;
     }
     .log-container{
         max-width: 35%;

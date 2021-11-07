@@ -1,0 +1,39 @@
+.btn-pastel-green{
+    background-color: #12BA9E !important;
+    color: white !important;
+}
+.btn-pastel-green:focus{
+    box-shadow: 0 0 0 0.25rem rgb(18 186 158 / 25%) !important;
+}
+.btn-pastel-pink{
+    background-color: #F97068 !important;
+    color: white !important;
+}
+.btn-pastel-pink:focus{
+    box-shadow: 0 0 0 0.25rem rgb(249 112 104 / 25%) !important;
+}
+.btn-pastel-red{
+    background-color: #EC465A !important;
+    color: white !important;
+}
+.btn-pastel-red:focus{
+    box-shadow: 0 0 0 0.25rem rgb(236 70 90 / 25%) !important;
+}
+.btn-pastel-blue{
+    background-color: #227C9D !important;
+    color: white !important;
+}
+.btn-pastel-yellow{
+    background-color: #f5e663 !important;
+    color: white !important;
+}
+.btn-pastel-yellow:focus{
+    box-shadow: 0 0 0 0.25rem rgb(245 230 99 / 25%) !important;
+}
+.btn-turquoise{
+    background-color: #03989e !important;
+    color: white !important;
+}
+.btn-pastel-turquoise:focus{
+    box-shadow: 0 0 0 0.25rem rgb(3 152 158 / 25%) !important;
+}
