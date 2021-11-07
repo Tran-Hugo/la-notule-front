@@ -27,6 +27,8 @@
 import axios from 'axios'
 import configHelper from '../helpers/configHeader.js'
 import Card from "../components/card.vue";
+import { mapGetters } from "vuex";
+
 
 export default {
     name:'Category',
@@ -62,6 +64,26 @@ export default {
         }
       }
     },
+    methods:{
+      addCartItem(bookId, quantity) {
+      let cartItem = {
+        book: bookId,
+        cart: this.cart,
+        quantity: quantity,
+      };
+      console.log(cartItem);
+      axios
+        .post(configHelper.domain + "/cartItems/add", cartItem)
+        .then((res) => {
+          console.log(res);
+        });
+      },
+    },
+    computed: {
+    ...mapGetters({
+      cart: "getCart",
+    }),
+  },
 }
 </script>
 
