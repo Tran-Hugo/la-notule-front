@@ -232,7 +232,7 @@ export default {
 }
 
 .main-container {
-  padding-top: 6vh;
+  padding-top: 7vh;
   width: 100%;
   background-color: #fff3dd;
 }
