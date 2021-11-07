@@ -9,7 +9,7 @@
   <br>
   <p class="d-md-none text-end text-primary">glissez le tableau vers la droite ! <i class="fas fa-arrow-right"></i></p>
   <div class="d-flex justify-content-center">
-        <div class="overflow-hidden d-flex justify-content-center col-10">
+        <div class="overflow-hidden d-flex justify-content-center col-11">
             <div class="col-10 overflow-auto">
                 <table class="table">
                     <br>
@@ -29,9 +29,9 @@
                         <td>{{order.price}}€</td>
                         <td>
                             <router-link :to="{ name: 'order', params: { id: order.id }}">
-                                <button type="button" class="btn btn-success me-2">Détails</button>
+                                <button type="button" class="btn btn-pastel-green me-2">Détails</button>
                             </router-link>
-                            <button type="button" @click="remove(order.id)" class="btn btn-danger me-2">Supprimer</button>
+                            <button type="button" @click="remove(order.id)" class="btn btn-pastel-red me-2">Supprimer</button>
                         </td>
                         </tr>
                     </tbody>
@@ -83,6 +83,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+@import '../../../assets/css/btn-colors.css';
 </style>
