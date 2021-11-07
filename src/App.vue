@@ -260,7 +260,7 @@ export default {
 
 @media screen and (min-width: 768px) {
   .main-container {
-    padding-top: 7vh;
+    padding-top: 8vh;
   }
   .logo-link {
     width: 27vw;

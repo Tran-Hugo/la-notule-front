@@ -1,20 +1,24 @@
 <template>
-  <main>
-    <h1>Résultats pour {{ this.$route.params.search }}</h1>
-    <div>
-      <Card
-        @add-cartitem="addCartItem"
-        v-for="(book, key) in books"
-        :key="key"
-        :stock="book.quantity"
-        :lien="book.fileUrl"
-        :titre="book.title"
-        :auteur="book.author"
-        :description="book.description"
-        :prix="book.price"
-        :bookId="book.id"
-      />
+  <main class="mb-3">
+    <div class="principale">
+    <h1 class="text-center">Résultats de votre recherche : {{ this.$route.params.search }}</h1>
+      <div class="d-flex flex-wrap justify-content-center">
+        <Card
+          @add-cartitem="addCartItem"
+          class="mx-3"
+          v-for="(book, key) in books"
+          :key="key"
+          :stock="book.quantity"
+          :lien="book.fileUrl"
+          :titre="book.title"
+          :auteur="book.author"
+          :description="book.description"
+          :prix="book.price"
+          :bookId="book.id"
+        />
+      </div>
     </div>
+    
   </main>
 </template>
 
@@ -84,4 +88,19 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.principale{
+  min-height: 25rem;
+}
+
+@media screen and (min-width: 768px) {
+  .principale {
+    min-height: 41rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .principale {
+    min-height: 50rem;
+  }
+}
+</style>

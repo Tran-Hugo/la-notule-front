@@ -120,8 +120,8 @@ a {
     width: 10rem;
   }
   .cardItem {
-    min-width: 25rem;
-    max-width: 25rem;
+    min-width: 23rem;
+    max-width: 23rem;
     transition: all 0.25s ease-in-out;
   }
   .cardItem:hover{
