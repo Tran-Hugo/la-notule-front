@@ -232,7 +232,7 @@ export default {
 }
 
 .main-container {
-  padding-top: 7vh;
+  padding-top: 8vh;
   width: 100%;
   background-color: #fff3dd;
 }
@@ -286,6 +286,7 @@ export default {
     font-size: 1rem;
   }
 }
+/* #region formats paysage */
 @media screen and (min-width: 568px) and (max-height: 540px) {
   .burnav{
     height: 90vh;
@@ -323,6 +324,17 @@ export default {
   }
   .cats{
     font-size: 1rem;
+  }
+}
+/* #endregion  */ 
+@media screen and (max-width: 412px) and (min-height: 700px) {
+  .main-container{
+    padding-top: 7vh;
+  }
+}
+@media screen and (max-width: 321px) and (min-height: 568px) {
+  .main-container{
+    padding-top: 9vh;
   }
 }
 @media screen and (min-width: 992px) {
