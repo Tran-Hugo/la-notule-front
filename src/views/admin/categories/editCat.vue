@@ -1,11 +1,11 @@
 <template>
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center add-cat-container">
     <form class="col-6" @submit.prevent="editCategory">
                 <div class="mb-3">
                     <label class="form-label">Nom de la catégorie</label>
                     <input type="text" v-model="name" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-primary">éditer</button>
+                <button type="submit" class="btn btn-turquoise">éditer</button>
     </form>
 </div>
 </template>
@@ -46,5 +46,11 @@ export default {
 </script>
 
 <style>
+@import '../../../assets/css/btn-colors.css';
 
+@media screen and (min-width: 768px) {
+  .add-cat-container{
+    margin-top: 10rem;
+  }
+}
 </style>

@@ -26,10 +26,23 @@ export default {
 @import '../../assets/css/btn-colors.css';
 
 main{
+  min-height: 24rem;
   margin-bottom: 2rem;
 }
 .btn{
   margin: 0;
   font-size: .8em;
+}
+
+@media screen and (min-width: 768px) {
+  main{
+  min-height: 40rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  main{
+    min-height: 49rem;
+  }
 }
 </style>
