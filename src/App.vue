@@ -297,6 +297,9 @@ export default {
   .cats{
     font-size: 1rem;
   }
+  .main-container{
+    padding-top: 19vh;
+  }
 }
 @media screen and (min-width: 568px) and (max-height: 440px) {
   .burnav{
