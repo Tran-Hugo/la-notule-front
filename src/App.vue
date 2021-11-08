@@ -81,7 +81,7 @@
           placeholder="Recherche..."
           aria-label="Search"
         />
-        <button class="btn btn-outline-success" type="submit">
+        <button class="btn btn-turquoise" type="submit">
           Rechercher
         </button>
       </form>
@@ -175,6 +175,8 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Arvo&display=swap");
+@import "assets/css/btn-colors.css";
+
 #app {
   font-family: Arvo, Helvetica, Arial, sans-serif;
 }
@@ -199,7 +201,7 @@ export default {
   width: 85vw;
   height: 93vh;
   background-color: #fff3dd;
-  z-index: 10;
+  z-index: 1001;
   transform: translateX(-900px);
   border: 5px solid wheat;
   display: flex;
