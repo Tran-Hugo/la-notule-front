@@ -228,7 +228,7 @@ export default {
   width: 100%;
   background-color: white;
   position: fixed;
-  z-index: 10;
+  z-index: 1001;
 }
 
 .main-container {

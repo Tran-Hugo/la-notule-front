@@ -5,6 +5,7 @@ import store from './store'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import interceptor from './services/interceptors.js'
+import "leaflet/dist/leaflet.css";
 
 interceptor();
 

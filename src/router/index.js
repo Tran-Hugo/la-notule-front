@@ -21,6 +21,7 @@ import userDashboard from '../views/user/userDashboard.vue'
 import userInfo from '../views/user/userInfo.vue'
 import ordersList from '../views/user/userOrders.vue'
 import search from '../views/search.vue'
+import contact from '../views/contact.vue'
 
 const routes = [
   {
@@ -205,6 +206,11 @@ const routes = [
       }
     ]
   },
+  {
+    path:'/contact',
+    name:'contact',
+    component:contact
+  }
 ]
 const scrollBehavior = (to, from, savedPosition) => {
   return savedPosition ||
