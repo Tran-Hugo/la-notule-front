@@ -22,13 +22,8 @@ export default {
          maxZoom: 18,
        }
      ).addTo(mapDiv);
-    const circle = L.circle(this.center, {
-                                color: 'red',
-                                fillColor: '#f03',
-                                fillOpacity: 0.5,
-                                radius: 20
-                            }).addTo(mapDiv);
-        circle.bindPopup("Afpa, 9 Rue Marc Seguin, 94015 Créteil").openPopup();
+        const marker = L.marker(this.center).addTo(mapDiv)
+        marker.bindPopup("Afpa, 9 Rue Marc Seguin, 94015 Créteil").openPopup();
    },
  },
     mounted(){

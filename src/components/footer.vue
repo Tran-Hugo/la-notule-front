@@ -3,7 +3,7 @@
     <div class="conteneur d-flex justify-content-between">
       <div class="d-flex flex-column flex-lg-row">
         <ul>
-        <li><a>La boutique</a></li>
+        <li><router-link :to="{name:'contact'}">La boutique</router-link></li>
         <li><a>Moyens de paiement</a></li>
         <li><a>Livraison</a></li>
         <li><a>CGU</a></li>
