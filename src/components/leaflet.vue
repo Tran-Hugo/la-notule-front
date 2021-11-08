@@ -35,6 +35,20 @@ export default {
 <style scoped>
 #mapContainer{
   width:100%;
+  height: 20rem;
+  max-height: 20rem;
+}
+@media screen and (min-width: 992px) {
+#mapContainer{
+  margin-left: 1rem;
+  width:100%;
+  height: 20rem;
+}
+@media screen and (min-width: 1400px) {
+#mapContainer{
+  width:100%;
   height: 30rem;
+}
+}
 }
 </style>

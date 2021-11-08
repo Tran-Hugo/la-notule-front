@@ -46,7 +46,7 @@
           </form>
         </div>
       </div>
-      <div class="col-12 col-lg-6 col-xl-5">
+      <div id="mapConteneur" class="col-12 col-lg-6 col-xl-5 d-flex jutify-content-center">
         <Map />
       </div>
     </div>
