@@ -15,13 +15,11 @@ export default {
    setupLeafletMap: function () {
      const mapDiv = L.map("mapContainer").setView(this.center, 15);
      L.tileLayer(
-       "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+       "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", // liens pour choisir des cartes "https://wiki.openstreetmap.org/wiki/Tiles#Servers" voire "https://leaflet-extras.github.io/leaflet-providers/preview/"
        {
          attribution:
-           'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+           '&copy; OpenStreetMap France | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
          maxZoom: 18,
-         id: "mapbox/streets-v11",
-         accessToken:"pk.eyJ1IjoiZnNramYiLCJhIjoiY2t2cTIyYnI3NjhydDJ0b2swbGxkcmhpZiJ9.CcNlP8ooLFOusSgW3b2JwQ",
        }
      ).addTo(mapDiv);
     const circle = L.circle(this.center, {
