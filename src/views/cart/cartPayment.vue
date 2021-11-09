@@ -4,29 +4,35 @@
     <div class="d-flex flex-column principale">
       <div class="my-auto">
         <div class="cards-logos brands">
-          <img src="@/assets/mc_vrt_pos.svg" alt="master-card.svg">
-          <img src="@/assets/Visa_Brandmark_Blue_RGB_2021.svg" alt="visa.svg">
-          <img src="@/assets/AXP_BlueBoxLogo_Alternate_SMALLscale_RGB_DIGITAL_80x80.svg" alt="amex.svg">
+          <img src="@/assets/mc_vrt_pos.svg" alt="master-card.svg" />
+          <img src="@/assets/Visa_Brandmark_Blue_RGB_2021.svg" alt="visa.svg" />
+          <img
+            src="@/assets/AXP_BlueBoxLogo_Alternate_SMALLscale_RGB_DIGITAL_80x80.svg"
+            alt="amex.svg"
+          />
         </div>
         <form
-        class="d-flex justify-content-center"
-        @submit.prevent="submit"
-        id="payment-form"
-      >
-        <div class="form-row col-12 col-md-6 col-lg-6 d-flex flex-column">
-          <div id="card-elements" v-on:change="cardChange(event)"></div>
-          <div id="card-errors" role="alert"></div>
-          <br />
-          <button type="button" @click.prevent="submit" class="btn btn-plus">
-            Payer {{ cartTotal }}€
-          </button>
-        </div>
-      </form>
+          class="d-flex justify-content-center"
+          @submit.prevent="submit"
+          id="payment-form"
+        >
+          <div class="form-row col-12 col-md-6 col-lg-6 d-flex flex-column">
+            <div id="card-elements" v-on:change="cardChange(event)"></div>
+            <div id="card-errors" role="alert"></div>
+            <br />
+            <button type="button" @click.prevent="submit" class="btn btn-plus">
+              Payer {{ cartTotal }}€
+            </button>
+          </div>
+        </form>
       </div>
-      
     </div>
     <div class="cards-logos stripe-logo-div">
-        <img class="logo-stripe" src="@/assets/Stripe-blurple.svg" alt="stripe.svg">
+      <img
+        class="logo-stripe"
+        src="@/assets/Stripe-blurple.svg"
+        alt="stripe.svg"
+      />
     </div>
   </main>
 </template>
@@ -49,17 +55,16 @@ export default {
       cartId: "",
       cardholderName: "",
       cardholderEmail: "",
-      message: "",
       cartTotal: "",
     };
   },
   mounted() {
-    card = elements.create("card",{
-        style: {
-            base: {
-                fontSize: '18px'
-            }
-        }
+    card = elements.create("card", {
+      style: {
+        base: {
+          fontSize: "18px",
+        },
+      },
     });
     card.mount("#card-elements");
     card.addEventListener("change", (event) => {
@@ -112,13 +117,16 @@ export default {
               configHelper.domain + "/payment/" + this.cartId + "/subscription",
               data
             );
-            return;
+            alert("paiement réussi");
+            this.$router.push("/");
           } else if ("error" in result) {
-            console.log(result.error.code);
-            this.message = "Carte refusée";
+            if (result.error.code == "card_declined") {
+              alert("votre carte est refusée");
+              this.$router.go();
+            }
           }
-        })
-        .then(() => (window.location.href = "http://localhost:8080/#"));
+        });
+      // .then(() => (window.location.href = "http://localhost:8080/#"));
     },
     // async stripeTokenHandler(intent){
     //     let data = {
@@ -147,33 +155,33 @@ export default {
   border: 1px solid wheat;
   margin: 1rem;
 }
-.cards-logos img{
+.cards-logos img {
   height: 3rem;
 }
-.brands{
+.brands {
   padding: 1rem;
   display: flex;
   justify-content: flex-end;
 }
-.logo-stripe{
+.logo-stripe {
   height: 2rem !important;
 }
-.stripe-logo-div{
+.stripe-logo-div {
   display: flex;
   justify-content: flex-end;
   padding: 0 1rem;
 }
-.btn-plus{
-  background-color: #12BA9E;
+.btn-plus {
+  background-color: #12ba9e;
   color: white;
 }
 @media screen and (min-width: 768px) {
-  .principale{
+  .principale {
     min-height: 36rem;
   }
 }
 @media screen and (min-width: 992px) {
-  main{
+  main {
     padding: 9rem 4rem 0 4rem;
   }
 }
