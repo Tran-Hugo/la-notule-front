@@ -1,7 +1,9 @@
 <template>
   <main class="mb-3">
     <div class="principale">
-    <h1 class="text-center">Résultats de votre recherche : "{{ this.$route.params.search }}"</h1>
+      <h1 class="text-center">
+        Résultats de votre recherche : "{{ this.$route.params.search }}"
+      </h1>
       <div class="d-flex flex-wrap justify-content-center">
         <Card
           @add-cartitem="addCartItem"
@@ -18,7 +20,6 @@
         />
       </div>
     </div>
-    
   </main>
 </template>
 
@@ -88,8 +89,8 @@ export default {
 };
 </script>
 
-<style>
-.principale{
+<style scoped>
+.principale {
   min-height: 25rem;
 }
 

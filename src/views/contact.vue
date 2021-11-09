@@ -46,7 +46,10 @@
           </form>
         </div>
       </div>
-      <div id="mapConteneur" class="col-12 col-lg-6 col-xl-4 d-flex jutify-content-center">
+      <div
+        id="mapConteneur"
+        class="col-12 col-lg-6 col-xl-4 d-flex jutify-content-center"
+      >
         <Map />
       </div>
     </div>
@@ -89,7 +92,21 @@ export default {
 
 <style scoped>
 @import "../assets/css/polices-colors.css";
+.principale {
+  min-height: 25rem;
+}
 p {
   margin-bottom: 0.7rem;
+}
+
+@media screen and (min-width: 768px) {
+  .principale {
+    min-height: 36rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .principale {
+    min-height: 50rem;
+  }
 }
 </style>

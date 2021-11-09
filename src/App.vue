@@ -56,18 +56,23 @@
       </ul>
     </div>
 
-    <div class="top-menu col-12 d-flex d-lg-none flex-column align-items-center">
+    <div
+      class="top-menu col-12 d-flex d-lg-none flex-column align-items-center"
+    >
       <div class="d-flex col-12 align-items-center mb-2">
-        <i v-if="!isOpen" @click="isOpen = !isOpen" class="fas fa-bars burger"></i>
+        <i
+          v-if="!isOpen"
+          @click="isOpen = !isOpen"
+          class="fas fa-bars burger"
+        ></i>
         <i v-else @click="isOpen = !isOpen" class="fas fa-times"></i>
-      <router-link class="logo-link" to="/"
-        ><img class="col-12" src="@/assets/logo.svg" alt="logo.svg"
-      /></router-link>
+        <router-link class="logo-link" to="/"
+          ><img class="col-12" src="@/assets/logo.svg" alt="logo.svg"
+        /></router-link>
       </div>
       <div class="barre d-lg-none"></div>
     </div>
 
-    
     <nav class="burnav d-lg-none" :class="{ open: isOpen }">
       <form
         class="d-flex"
@@ -185,7 +190,7 @@ export default {
   color: #fa8072;
   margin: 0 1rem;
 }
-.fas.fa-times{
+.fas.fa-times {
   font-size: 2em;
   color: #fa8072;
   margin: 0 1.2rem;
@@ -274,7 +279,7 @@ export default {
   .fas.fa-bars {
     font-size: 2em;
   }
-  
+
   .barre {
     top: 7vh;
   }
@@ -290,52 +295,52 @@ export default {
 }
 /* #region formats paysage */
 @media screen and (min-width: 568px) and (max-height: 540px) {
-  .burnav{
+  .burnav {
     height: 90vh;
-    top:12vh
+    top: 12vh;
   }
-  .burnav ul{
+  .burnav ul {
     font-size: 1rem;
   }
-  .cats{
+  .cats {
     font-size: 1rem;
   }
-  .main-container{
+  .main-container {
     padding-top: 19vh;
   }
 }
 @media screen and (min-width: 568px) and (max-height: 440px) {
-  .burnav{
-      height: 82vh;
-      top:18vh
-    }
-  .burnav ul{
+  .burnav {
+    height: 82vh;
+    top: 18vh;
+  }
+  .burnav ul {
     font-size: 1rem;
   }
-  .cats{
+  .cats {
     font-size: 1rem;
   }
 }
 @media screen and (min-width: 568px) and (max-height: 360px) {
-.burnav{
-      height: 82vh;
-      top:18vh
-    }
-.burnav ul{
+  .burnav {
+    height: 82vh;
+    top: 18vh;
+  }
+  .burnav ul {
     font-size: 1rem;
   }
-  .cats{
+  .cats {
     font-size: 1rem;
   }
 }
-/* #endregion  */ 
+/* #endregion  */
 @media screen and (max-width: 412px) and (min-height: 700px) {
-  .main-container{
+  .main-container {
     padding-top: 7vh;
   }
 }
 @media screen and (max-width: 321px) and (min-height: 568px) {
-  .main-container{
+  .main-container {
     padding-top: 9vh;
   }
 }
@@ -373,7 +378,7 @@ export default {
     text-decoration: none;
     color: black;
   }
-  .logout-btn{
+  .logout-btn {
     cursor: pointer;
   }
   .catDesk {
