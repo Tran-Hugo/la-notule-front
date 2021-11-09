@@ -24,6 +24,9 @@ export default {
 </script>
 
 <style scoped>
+main {
+  padding-top: 1.5rem;
+}
 @media screen and (min-width: 992px) {
   main {
     padding-top: 15vh;
