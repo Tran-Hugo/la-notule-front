@@ -22,13 +22,13 @@
       </form>
       <ul>
         <li>
-          <router-link to="/">Accueil</router-link>
+          <router-link to="/">Accueil <i class="fas fa-home"></i></router-link>
         </li>
         <li>
           <router-link v-if="token == null" to="/login"
-            >Se connecter</router-link
+            >Se connecter <i class="fas fa-sign-in-alt"></i></router-link
           >
-          <a class="logout-btn" v-else @click="logout">Se déconnecter</a>
+          <a class="logout-btn" v-else @click="logout">Se déconnecter <i class="fas fa-sign-out-alt"></i></a>
         </li>
         <li v-if="token">
           <router-link to="/cart" @click="setPath('cart')"
@@ -37,15 +37,15 @@
         </li>
         <li v-if="token">
           <router-link to="/myAccount" @click="setPath('accountDefault')">
-            Mon compte</router-link
+            Mon compte <i class="fas fa-user-alt"></i></router-link
           >
         </li>
         <li v-if="role == 'ROLE_ADMIN'">
           <router-link to="/admin" @click="setPath('adminDefault')"
-            >Admin</router-link
+            >Admin <i class="fas fa-user-lock"></i></router-link
           >
         </li>
-        <li>Catégories :</li>
+        <li>Catégories <i class="far fa-bookmark"></i> :</li>
         <div class="cat-container scrollbar-y">
           <li class="catDesk" v-for="(cat, key) in Categories" :key="key">
             <router-link :to="{ name: 'category', params: { id: cat.id } }">{{
