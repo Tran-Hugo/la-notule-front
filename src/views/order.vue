@@ -95,9 +95,9 @@ export default {
   min-height: 6rem;
   border: 2px solid wheat;
 }
-.total{
+/* .total{
   text-decoration: underline #32abb0;
-}
+} */
 
 @media screen and (min-width: 768px) {
   .principale {
