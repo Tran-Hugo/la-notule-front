@@ -22,30 +22,30 @@
       </form>
       <ul>
         <li>
-          <router-link to="/">Accueil <i class="fas fa-home"></i></router-link>
+          <router-link to="/"><i class="fas fa-home"></i> Accueil</router-link>
         </li>
         <li>
           <router-link v-if="token == null" to="/login"
-            >Se connecter <i class="fas fa-sign-in-alt"></i></router-link
+            ><i class="fas fa-sign-in-alt"></i> Se connecter</router-link
           >
-          <a class="logout-btn" v-else @click="logout">Se déconnecter <i class="fas fa-sign-out-alt"></i></a>
+          <a class="logout-btn" v-else @click="logout"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
         </li>
         <li v-if="token">
           <router-link to="/cart" @click="setPath('cart')"
-            >Panier <i class="fas fa-shopping-cart"></i
-          ></router-link>
+            ><i class="fas fa-shopping-cart"></i
+          > Panier</router-link>
         </li>
         <li v-if="token">
           <router-link to="/myAccount" @click="setPath('accountDefault')">
-            Mon compte <i class="fas fa-user-alt"></i></router-link
+           <i class="fas fa-user-alt"></i> Mon compte</router-link
           >
         </li>
         <li v-if="role == 'ROLE_ADMIN'">
           <router-link to="/admin" @click="setPath('adminDefault')"
-            >Admin <i class="fas fa-user-lock"></i></router-link
+            ><i class="fas fa-user-lock"></i> Admin</router-link
           >
         </li>
-        <li>Catégories <i class="far fa-bookmark"></i> :</li>
+        <li><i class="far fa-bookmark"></i> Catégories :</li>
         <div class="cat-container scrollbar-y">
           <li class="catDesk" v-for="(cat, key) in Categories" :key="key">
             <router-link :to="{ name: 'category', params: { id: cat.id } }">{{
