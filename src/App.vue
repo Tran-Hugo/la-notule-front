@@ -28,16 +28,18 @@
           <router-link v-if="token == null" to="/login"
             ><i class="fas fa-sign-in-alt"></i> Se connecter</router-link
           >
-          <a class="logout-btn" v-else @click="logout"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
+          <a class="logout-btn" v-else @click="logout"
+            ><i class="fas fa-sign-out-alt"></i> Se déconnecter</a
+          >
         </li>
         <li v-if="token">
           <router-link to="/cart" @click="setPath('cart')"
-            ><i class="fas fa-shopping-cart"></i
-          > Panier</router-link>
+            ><i class="fas fa-shopping-cart"></i> Panier</router-link
+          >
         </li>
         <li v-if="token">
           <router-link to="/myAccount" @click="setPath('accountDefault')">
-           <i class="fas fa-user-alt"></i> Mon compte</router-link
+            <i class="fas fa-user-alt"></i> Mon compte</router-link
           >
         </li>
         <li v-if="role == 'ROLE_ADMIN'">
@@ -92,30 +94,34 @@
       </form>
       <ul>
         <li @click="isOpen = !isOpen">
-          <router-link to="/">Accueil</router-link>
+          <router-link to="/"><i class="fas fa-home"></i> Accueil</router-link>
         </li>
         <li @click="isOpen = !isOpen" v-if="token == null">
-          <router-link to="/login">Se connecter</router-link>
+          <router-link to="/login"
+            ><i class="fas fa-sign-in-alt"></i> Se connecter</router-link
+          >
         </li>
         <li @click="isOpen = !isOpen" v-else>
-          <a href="#" @click="logout"> Se déconnecter</a>
+          <a href="#" @click="logout"
+            ><i class="fas fa-sign-out-alt"></i> Se déconnecter</a
+          >
         </li>
         <li @click="isOpen = !isOpen" v-if="token">
           <router-link to="/cart" @click="setPath('cart')"
-            >Panier<i class="fas fa-shopping-cart"></i
-          ></router-link>
+            ><i class="fas fa-shopping-cart"></i> Panier</router-link
+          >
         </li>
         <li @click="isOpen = !isOpen" v-if="token">
           <router-link to="/myAccount" @click="setPath('accountDefault')"
-            >Mon compte</router-link
+            ><i class="fas fa-user-alt"></i> Mon compte</router-link
           >
         </li>
         <li @click="isOpen = !isOpen" v-if="role == 'ROLE_ADMIN'">
           <router-link to="/admin" @click="setPath('adminDefault')"
-            >Admin</router-link
+            ><i class="fas fa-user-lock"></i> Admin</router-link
           >
         </li>
-        <li>Catégories :</li>
+        <li><i class="far fa-bookmark"></i> Catégories :</li>
         <div class="overflow-scroll">
           <li
             class="cats"

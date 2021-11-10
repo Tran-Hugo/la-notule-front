@@ -19,10 +19,14 @@
       class="d-flex justify-content-center justify-content-lg-around flex-column"
     >
       <router-link :to="{ name: 'book', params: { id: bookId } }">
-        <h4 v-if="titre.length>21" class="text-center">{{ titre.substring(0,21) }}...</h4>
+        <h4 v-if="titre.length > 21" class="text-center">
+          {{ titre.substring(0, 21) }}...
+        </h4>
         <h4 v-else class="text-center">{{ titre }}</h4>
       </router-link>
-      <p v-if="auteur.length>15">Auteurs : {{ auteur.substring(0,15) }}...</p>
+      <p v-if="auteur.length > 15">
+        Auteurs : {{ auteur.substring(0, 15) }}...
+      </p>
       <p v-else>Auteurs : {{ auteur }}</p>
       <p>prix : {{ prix }}€</p>
       <div>
@@ -114,6 +118,9 @@ a {
 }
 
 @media screen and (min-width: 992px) {
+  a:hover {
+    color: black;
+  }
   img {
     max-height: unset;
     max-width: 15rem;
@@ -124,10 +131,10 @@ a {
     max-width: 23rem;
     transition: all 0.25s ease-in-out;
   }
-  .cardItem:hover{
+  .cardItem:hover {
     position: relative;
     top: -0.3vh;
-    box-shadow: 20px 15px 31px -18px rgba(0,0,0,0.75);
+    box-shadow: 20px 15px 31px -18px rgba(0, 0, 0, 0.75);
   }
   h4 {
     font-weight: bold;
