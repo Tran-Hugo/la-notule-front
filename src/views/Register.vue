@@ -238,6 +238,9 @@ p {
   background-color: rgba(3, 152, 158, 0.79);
   color: white;
 }
+.btn:hover {
+  color: white !important;
+}
 
 @media screen and (min-width: 768px) {
   .principale {
