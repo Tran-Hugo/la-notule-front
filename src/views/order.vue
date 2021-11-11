@@ -88,7 +88,7 @@ export default {
   padding: 1rem;
   border: 1px solid wheat;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .product div img {
   max-width: 20vw;
