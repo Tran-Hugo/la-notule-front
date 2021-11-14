@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div id="nav" class="d-none d-lg-flex flex-column">
+    <nav id="nav" class="d-none d-lg-flex flex-column">
       <div class="logo-desktop">
         <router-link to="/"
           ><img class="col-12" src="@/assets/logo.svg" alt="logo.svg"
@@ -56,7 +56,7 @@
           </li>
         </div>
       </ul>
-    </div>
+    </nav>
 
     <div
       class="top-menu col-12 d-flex d-lg-none flex-column align-items-center"
