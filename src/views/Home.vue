@@ -98,25 +98,24 @@ export default {
   },
   methods: {
     addCartItem(bookId, quantity) {
-      if(this.cart == ''){
-        alert('Veuillez vous connecter')
+      if (this.cart == "") {
+        alert("Veuillez vous connecter");
       } else {
         let cartItem = {
-        book: bookId,
-        cart: this.cart,
-        quantity: quantity,
-      };
-      console.log(cartItem);
-      axios
-        .post(configHelper.domain + "/cartItems/add", cartItem)
-        .then((res) => {
-          console.log(res);
-          if (res.status == 201) {
-            alert("Article ajouté à votre panier");
-          }
-        });
+          book: bookId,
+          cart: this.cart,
+          quantity: quantity,
+        };
+        console.log(cartItem);
+        axios
+          .post(configHelper.domain + "/cartItems/add", cartItem)
+          .then((res) => {
+            console.log(res);
+            if (res.status == 201) {
+              alert("Article ajouté à votre panier");
+            }
+          });
       }
-      
     },
     search(searched) {
       this.$router.push({ name: "search", params: { search: searched } });
@@ -133,6 +132,7 @@ export default {
 <style scoped>
 .corps {
   background-color: #fff3dd;
+  min-height: 100vh;
 }
 .tagsContainer {
   overflow-x: scroll;
