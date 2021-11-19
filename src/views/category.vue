@@ -57,7 +57,7 @@ export default {
           .get(configHelper.domain + "/api/categories/" + this.$route.params.id)
           .then((res) => {
             console.log(res.data.books);
-            this.category = res.data;
+            this.category = res.data.name;
             this.books = res.data.books;
           });
       }
