@@ -66,7 +66,11 @@ export default {
             axios.delete(configHelper.domain+"/api/orders/"+id,configHelper.config())
                 .then(res=>{
                     if(res.status==204){
-                        this.$router.go()
+                        axios.get(configHelper.domain+'/api/orders')
+                            .then(res=>{
+                                console.log(res)
+                                this.orders = res.data["hydra:member"]
+                            })
                     }
                 })
         },

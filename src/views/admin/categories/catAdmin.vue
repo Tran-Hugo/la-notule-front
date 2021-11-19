@@ -80,7 +80,10 @@ export default {
         )
         .then((res) => {
           if (res.status == 204) {
-            this.$router.go();
+            axios.get(configHelper.domain + "/api/categories").then((res) => {
+              console.log(res.data["hydra:member"]);
+              this.categories = res.data["hydra:member"];
+            });
           }
         });
     },
