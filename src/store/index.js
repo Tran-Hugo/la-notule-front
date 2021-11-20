@@ -73,7 +73,6 @@ export default createStore({
         };
           axios.post('https://127.0.0.1:8000/api/login',user, config)
                         .then(res=>{
-                          console.log(res.data.data.id);
                           let role = res.data.data['roles'][0];
                           let cart = res.data.data['cart']
                           let userId = res.data.data.id
@@ -85,7 +84,6 @@ export default createStore({
                           commit('SET_CART',cart)
                           commit('SET_ROLE',role);
                           commit('SET_REFRESH_TOKEN',refreshToken);
-                          // window.location.href = "/";
                           router.push("/");
                           })
         },
@@ -98,7 +96,6 @@ export default createStore({
           
           axios.get('https://127.0.0.1:8000/api/me', config)
               .then(res=>{
-                console.log(res.data.roles)
                 let role = res.data.roles[0]  
                 commit('SET_ROLE',role)
               })
@@ -110,7 +107,7 @@ export default createStore({
           commit('RESET_CART')
           commit('RESET_ROLE')
           commit('RESET_REFRESH_TOKEN')
-          window.location.href = "/";
+          router.push("/");
         },
       }
     }, //fin login module
