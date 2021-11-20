@@ -73,8 +73,6 @@ export default {
         password: this.password,
       };
 
-      // console.log(this.user)
-
       this.$store.dispatch("connexion", this.user);
     },
   },
