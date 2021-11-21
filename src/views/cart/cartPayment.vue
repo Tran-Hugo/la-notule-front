@@ -123,7 +123,6 @@ export default {
             }
           }
         });
-      // .then(() => (window.location.href = "http://localhost:8080/#"));
     },
     // async stripeTokenHandler(intent){
     //     let data = {
