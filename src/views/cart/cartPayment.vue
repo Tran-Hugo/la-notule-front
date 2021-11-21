@@ -102,8 +102,9 @@ export default {
           },
         })
         .then((result) => {
-          if (result.paymentIntent.status === 'succeeded') {
-            let data = {
+          if ("paymentIntent" in result) {
+            if(result.paymentIntent.status == "succeeded"){
+              let data = {
               stripeIntentId: result.paymentIntent.id,
               stripeIntentPaymentMethod: result.paymentIntent.payment_method,
               stripeIntentStatus: result.paymentIntent.status,
@@ -116,6 +117,7 @@ export default {
             );
             alert("paiement réussi");
             this.$router.push("/");
+            }
           } else if ("error" in result) {
             if (result.error.code == "card_declined") {
               alert("votre carte est refusée");
