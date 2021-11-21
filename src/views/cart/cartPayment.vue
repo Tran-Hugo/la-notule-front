@@ -102,10 +102,7 @@ export default {
           },
         })
         .then((result) => {
-          if ("paymentIntent" in result) {
-            // console.log(result.paymentIntent,result)
-            // this.stripeTokenHandler(result.paymentIntent)
-
+          if (result.paymentIntent.status === 'succeeded') {
             let data = {
               stripeIntentId: result.paymentIntent.id,
               stripeIntentPaymentMethod: result.paymentIntent.payment_method,
