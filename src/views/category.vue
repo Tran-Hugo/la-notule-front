@@ -75,6 +75,9 @@ export default {
         .post(configHelper.domain + "/cartItems/add", cartItem)
         .then((res) => {
           console.log(res);
+          if (res.status == 201) {
+            alert("Article ajouté au panier");
+          }
         });
     },
   },
