@@ -8,7 +8,7 @@
           alt="typewriter.jpg"
         />
         <h1 class="accroche col-12 text-center">
-          Découvrez des milliers d'oeuvres littéraires
+          Attention site d'étude aucune commande ne sera prise en compte
         </h1>
       </div>
       <div

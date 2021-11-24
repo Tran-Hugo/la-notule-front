@@ -9,5 +9,6 @@ export default {
   return config;
   }
   ,
-domain:'https://127.0.0.1:8000'
+domain:'https://127.0.0.1:8000',
+//domain:'https://api.la-notule.fr'
 } 

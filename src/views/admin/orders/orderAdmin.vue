@@ -66,7 +66,7 @@ export default {
             axios.delete(configHelper.domain+"/api/orders/"+id,configHelper.config())
                 .then(res=>{
                     if(res.status==204){
-                        axios.get(configHelper.domain+'/api/orders')
+                        axios.get(configHelper.domain+'/api/orders',configHelper.config())
                             .then(res=>{
                                 console.log(res)
                                 this.orders = res.data["hydra:member"]
