@@ -65,8 +65,8 @@ export default {
         .then((res) => {
           console.log(res);
           if (res.status == 201) {
-              alert("Article ajouté à votre panier");
-            }
+            alert("Article ajouté à votre panier");
+          }
         });
     },
   },

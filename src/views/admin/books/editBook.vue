@@ -23,7 +23,7 @@
       </div>
       <div class="mb-3">
         <div class="d-flex justify-content-center">
-            <button
+          <button
             class="btn btn-pastel-pink"
             type="button"
             data-bs-toggle="collapse"
@@ -37,7 +37,11 @@
 
         <div class="collapse mt-2" id="collapseExample">
           <div class="card card-body d-flex">
-            <div class="d-flex justify-content-center" v-for="(cat, index) in Categories" :key="index">
+            <div
+              class="d-flex justify-content-center"
+              v-for="(cat, index) in Categories"
+              :key="index"
+            >
               <label class="form-check-label me-3" for="flexCheckIndeterminate">
                 {{ cat.name }}
               </label>
@@ -72,13 +76,22 @@
             </label>
           </div>
         </div>
-        <div v-if="url" id="preview" class="d-flex flex-column align-items-center justify-content-center">
+        <div
+          v-if="url"
+          id="preview"
+          class="d-flex flex-column align-items-center justify-content-center"
+        >
           <h5>nouvelle image</h5>
           <img :src="url" />
         </div>
         <br />
         <br />
-        <input class="form-control" @change="onFileChange" type="file" id="formFile" />
+        <input
+          class="form-control"
+          @change="onFileChange"
+          type="file"
+          id="formFile"
+        />
       </div>
 
       <button type="submit" class="btn btn-primary">éditer</button>
@@ -163,10 +176,10 @@ export default {
 </script>
 
 <style scoped>
-@import '../../../assets/css/btn-colors.css';
+@import "../../../assets/css/btn-colors.css";
 img {
   max-width: 100%;
   max-height: 500px;
-  border:1px solid;
+  border: 1px solid;
 }
 </style>

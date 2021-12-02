@@ -103,22 +103,25 @@ export default {
         })
         .then((result) => {
           if ("paymentIntent" in result) {
-            if(result.paymentIntent.status == "succeeded"){
+            if (result.paymentIntent.status == "succeeded") {
               let data = {
-              stripeIntentId: result.paymentIntent.id,
-              stripeIntentPaymentMethod: result.paymentIntent.payment_method,
-              stripeIntentStatus: result.paymentIntent.status,
-              subscription: this.cartId,
-            };
-            console.log(data);
-            axios.post(
-              configHelper.domain + "/payment/" + this.cartId + "/subscription",
-              data
-            );
-            alert("paiement réussi");
-            this.$router.push("/");
+                stripeIntentId: result.paymentIntent.id,
+                stripeIntentPaymentMethod: result.paymentIntent.payment_method,
+                stripeIntentStatus: result.paymentIntent.status,
+                subscription: this.cartId,
+              };
+              console.log(data);
+              axios.post(
+                configHelper.domain +
+                  "/payment/" +
+                  this.cartId +
+                  "/subscription",
+                data
+              );
+              alert("paiement réussi");
+              this.$router.push("/");
             }
-          } else if ("error" in result) {
+          } else {
             if (result.error.code == "card_declined") {
               alert("votre carte est refusée");
               this.$router.go();
@@ -126,18 +129,6 @@ export default {
           }
         });
     },
-    // async stripeTokenHandler(intent){
-    //     let data = {
-    //         'stripeIntentId':intent.id,
-    //         'stripeIntentPaymentMethod':intent.payment_method,
-    //         'stripeIntentStatus':intent.status,
-    //         'subscription':this.cartId
-    //     }
-    //     console.log(data)
-    //     await axios.post('https://127.0.0.1:8000/payment/'+this.cartId+'/subscription',data)
-    //     // card.clear();
-    //             .then(setTimeout(window.location.href="http://localhost:8080/",4000))
-    // }
   },
   computed: {
     ...mapGetters({

@@ -16,14 +16,15 @@
           /></router-link>
           <div class="d-flex flex-column justify-content-center col-md-6">
             <router-link
-            class="link"
-            :to="{ name: 'book', params: { id: item.book.id } }"
-            ><p>
-              {{ item["book"]["title"] }}
-              <span class="badge bg-primary rounded-pill me-2">
-                {{ item.quantity }} </span
-              ><span>{{ item["book"]["price"] }}€</span>
-            </p></router-link>
+              class="link"
+              :to="{ name: 'book', params: { id: item.book.id } }"
+              ><p>
+                {{ item["book"]["title"] }}
+                <span class="badge bg-primary rounded-pill me-2">
+                  {{ item.quantity }} </span
+                ><span>{{ item["book"]["price"] }}€</span>
+              </p></router-link
+            >
 
             <div class="d-flex justify-content-between">
               <button
@@ -171,8 +172,6 @@ export default {
       console.log(data.data);
       this.cartItems = data.data.cartItems;
       this.total = data.data.total;
-
-      // this.$router.go()
     },
     async deleteCartItem(id) {
       await axios.delete(configHelper.domain + "/cartItems/delete/" + id);
@@ -206,7 +205,7 @@ img {
   height: 15rem;
   width: 10rem;
 }
-.link{
+.link {
   text-decoration: none;
   color: black;
 }
@@ -221,16 +220,16 @@ p {
 .btn {
   font-size: 0.85rem;
 }
-.btn-danger{
-  background-color: #EC465A !important;
+.btn-danger {
+  background-color: #ec465a !important;
   color: white;
 }
-.btn-minus{
-  background-color: #F97068;
+.btn-minus {
+  background-color: #f97068;
   color: white;
 }
-.btn-plus{
-  background-color: #12BA9E;
+.btn-plus {
+  background-color: #12ba9e;
   color: white;
 }
 @media screen and (min-width: 768px) {

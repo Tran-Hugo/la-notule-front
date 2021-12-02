@@ -23,7 +23,7 @@
       </div>
       <div class="mb-3">
         <div class="d-flex justify-content-center">
-            <button
+          <button
             class="btn btn-pastel-pink"
             type="button"
             data-bs-toggle="collapse"
@@ -34,10 +34,14 @@
             Catégories
           </button>
         </div>
-        
+
         <div class="collapse mt-2" id="collapseExample">
           <div class="card card-body d-flex">
-            <div class="d-flex justify-content-center" v-for="(cat, index) in Categories" :key="index">
+            <div
+              class="d-flex justify-content-center"
+              v-for="(cat, index) in Categories"
+              :key="index"
+            >
               <label class="form-check-label me-3" for="flexCheckIndeterminate">
                 {{ cat.name }}
               </label>
@@ -52,11 +56,16 @@
         </div>
       </div>
       <div v-if="url" id="preview" class="d-flex justify-content-center">
-        <img  :src="url" />
+        <img :src="url" />
       </div>
       <div class="mb-3">
         <label for="formFile" class="form-label">Image</label>
-        <input class="form-control" @change="onFileChange" type="file" id="formFile" />
+        <input
+          class="form-control"
+          @change="onFileChange"
+          type="file"
+          id="formFile"
+        />
       </div>
       <div class="d-flex justify-content-center">
         <button type="submit" class="btn btn-turquoise">Ajouter</button>
@@ -119,16 +128,16 @@ export default {
     onFileChange(e) {
       const file = e.target.files[0];
       this.url = URL.createObjectURL(file);
-    }
+    },
   },
 };
 </script>
 
 <style>
-@import '../../../assets/css/btn-colors.css';
+@import "../../../assets/css/btn-colors.css";
 #preview img {
   max-width: 100%;
   max-height: 500px;
-  border:1px solid;
+  border: 1px solid;
 }
 </style>
