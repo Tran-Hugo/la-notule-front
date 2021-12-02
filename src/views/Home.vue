@@ -211,5 +211,8 @@ export default {
     background: #03989e;
     border-radius: 1em;
   }
+  .scrollbar{
+    scrollbar-width: thin;
+  }
 }
 </style>
